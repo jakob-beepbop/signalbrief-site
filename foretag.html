@@ -24,7 +24,8 @@
     --linje-mork:#2A3830;
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  html{scroll-behavior:smooth}
+  /* OBS: scroll-behavior:smooth + backdrop-filter på sticky header
+     frös Chrome-renderaren (verifierat 2026-07-07) — använd inte här */
   body{font-family:"Public Sans",system-ui,sans-serif;background:var(--papper);color:var(--kol);
        font-size:1.05rem;line-height:1.65;-webkit-font-smoothing:antialiased}
   .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
@@ -34,7 +35,7 @@
   :focus-visible{outline:3px solid var(--massing);outline-offset:3px;border-radius:2px}
 
   /* ---------- header ---------- */
-  header{position:sticky;top:0;z-index:50;background:rgba(16,25,19,.92);backdrop-filter:blur(10px);
+  header{position:sticky;top:0;z-index:50;background:#0E1611;
          border-bottom:1px solid var(--linje-mork)}
   header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
   .logo{font-family:"IBM Plex Mono",monospace;font-weight:500;letter-spacing:.22em;font-size:.85rem;
@@ -223,7 +224,6 @@
   .rev{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
   .rev.syns{opacity:1;transform:none}
   @media (prefers-reduced-motion: reduce){
-    html{scroll-behavior:auto}
     .rev{opacity:1;transform:none;transition:none}
     .cta,.kort{transition:none}
   }
