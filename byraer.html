@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Handkvalificerade leads för webbyråer: lokala företag med starka omdömen men bevisat digitalt gap. Första 10 gratis.">
+<meta name="description" content="Handkvalificerade leads för webbyråer: lokala företag med starka omdömen men ingen eller trasig hemsida. Första 10 gratis.">
 <title>Signal Brief för webbyråer — kvalificerade leads</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +22,8 @@
     }
   }
   *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
   body{
     background:var(--papper);
     background-image:
@@ -33,12 +35,12 @@
     line-height:1.6;
   }
   a{color:var(--signal)}
-  a:focus-visible{outline:3px solid var(--signal-ljus);outline-offset:2px;border-radius:4px}
-  .wrap{max-width:880px;margin:0 auto;padding:0 clamp(1rem,4vw,2rem)}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--signal-ljus);outline-offset:2px;border-radius:4px}
+  .wrap{max-width:920px;margin:0 auto;padding:0 clamp(1rem,4vw,2rem)}
 
   header{padding:1.3rem 0;border-bottom:1px solid var(--linje)}
   header .wrap{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap}
-  .logo{font-family:"IBM Plex Mono",ui-monospace,Consolas,monospace;font-weight:700;font-size:1.02rem;letter-spacing:.05em;color:var(--blaeck);text-decoration:none}
+  .logo{font-family:"IBM Plex Mono",ui-monospace,Consolas,monospace;font-weight:700;font-size:1.02rem;letter-spacing:.05em;color:var(--blaeck)}
   .logo::before{content:"▮ ";color:var(--signal)}
   .publik{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--dis)}
 
@@ -54,36 +56,63 @@
   .cta{
     display:inline-block;background:var(--signal);color:#fff;text-decoration:none;
     font-weight:700;padding:.85rem 1.5rem;border-radius:10px;box-shadow:var(--skugga);
+    transition:transform .15s ease, background .15s ease;border:0;font-size:1rem;cursor:pointer;
+    font-family:"Public Sans",system-ui,sans-serif;
   }
-  .cta:hover{background:var(--signal-ljus)}
+  .cta:hover{background:var(--signal-ljus);transform:translateY(-1px)}
   .cta-not{font-size:.85rem;color:var(--dis)}
 
-  section{padding:clamp(2rem,4.5vw,3rem) 0;border-top:1px solid var(--linje)}
+  section{padding:clamp(2rem,4.5vw,3rem) 0;border-top:1px solid var(--linje);scroll-margin-top:1.5rem}
   section h2{
     font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.15em;
     text-transform:uppercase;color:var(--signal);margin-bottom:1.4rem;
   }
+  .sektion-ingress{color:var(--dis);max-width:60ch;margin:-.6rem 0 1.4rem}
 
-  /* exempel-lead: samma rapportspråk som huvudsidan */
+  /* Tre riktiga exempel-leads som matas fram */
+  .leads{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+  @media (max-width:760px){ .leads{grid-template-columns:1fr} }
   .lead-kort{
     background:var(--kort);border:1px solid var(--linje);border-radius:14px;
-    padding:1.5rem;box-shadow:var(--skugga);max-width:620px;
-    font-family:"IBM Plex Mono",monospace;font-size:.86rem;
+    padding:1.3rem;box-shadow:var(--skugga);
+    font-family:"IBM Plex Mono",monospace;font-size:.82rem;
+    transition:transform .18s ease, box-shadow .18s ease;
+    opacity:0;transform:translateY(10px);animation:mata .5s ease forwards;
   }
-  .lead-kort .rubrik{color:var(--dis);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;margin-bottom:1rem}
-  .lead-kort .rad{display:flex;justify-content:space-between;gap:1rem;padding:.5rem 0;border-top:1px dashed var(--linje);flex-wrap:wrap}
+  .lead-kort:nth-child(1){animation-delay:.25s}
+  .lead-kort:nth-child(2){animation-delay:.85s}
+  .lead-kort:nth-child(3){animation-delay:1.45s}
+  @keyframes mata{to{opacity:1;transform:none}}
+  .lead-kort:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(12,27,24,.06),0 16px 32px -12px rgba(12,27,24,.18)}
+  @media (prefers-reduced-motion: reduce){
+    .lead-kort{animation:none;opacity:1;transform:none}
+    .lead-kort:hover{transform:none}
+    .cta{transition:none}
+  }
+  .lead-kort .typ{
+    display:inline-block;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--varning);border:1px solid color-mix(in srgb, var(--varning) 40%, transparent);
+    border-radius:99px;padding:.15rem .6rem;margin-bottom:.9rem;font-weight:700;
+  }
+  .lead-kort .rad{display:flex;justify-content:space-between;gap:.8rem;padding:.42rem 0;border-top:1px dashed var(--linje)}
   .lead-kort .rad:first-of-type{border-top:none}
-  .lead-kort .varde{font-weight:700}
-  .lead-kort .gap{color:var(--varning);font-weight:700}
-  .lead-kort .fotnot{margin-top:1rem;color:var(--dis);font-size:.74rem;font-family:"Public Sans",sans-serif;border-top:1px solid var(--linje);padding-top:.85rem}
+  .lead-kort .n{color:var(--dis)}
+  .lead-kort .v{font-weight:700;text-align:right}
+  .leads-fotnot{margin-top:1rem;color:var(--dis);font-size:.8rem;max-width:64ch}
 
-  .punkter{max-width:62ch;color:var(--dis)}
-  .punkter li{margin:.55rem 0 .55rem 1.2rem}
+  .punkter{max-width:62ch;color:var(--dis);list-style:none}
+  .punkter li{margin:.55rem 0;padding-left:1.4rem;position:relative}
+  .punkter li::before{content:"▸";position:absolute;left:0;color:var(--signal);font-weight:700}
   .punkter b{color:var(--blaeck)}
 
   .pris{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
   @media (max-width:700px){ .pris{grid-template-columns:1fr} }
-  .pris article{background:var(--kort);border:1px solid var(--linje);border-radius:12px;padding:1.3rem;box-shadow:var(--skugga)}
+  .pris article{
+    background:var(--kort);border:1px solid var(--linje);border-radius:12px;padding:1.3rem;
+    box-shadow:var(--skugga);transition:transform .18s ease;
+  }
+  .pris article:hover{transform:translateY(-3px)}
+  @media (prefers-reduced-motion: reduce){ .pris article:hover{transform:none} }
   .pris .belopp{font-family:"IBM Plex Mono",monospace;font-weight:700;font-size:1.15rem}
   .pris .gratis{color:var(--signal)}
   .pris h3{font-size:.95rem;font-weight:700;margin-top:.3rem}
@@ -91,23 +120,27 @@
 
   .kontakt-kort{
     background:var(--kort);border:1px solid var(--linje);border-radius:14px;
-    padding:1.7rem;max-width:600px;box-shadow:var(--skugga);
+    padding:1.7rem;max-width:640px;box-shadow:var(--skugga);
   }
   .kontakt-kort .etikett{font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--dis);margin-bottom:.5rem}
-  .kontakt-kort .adress{font-family:"Bricolage Grotesque",sans-serif;font-size:1.2rem;font-weight:700;word-break:break-all}
-  .kontakt-kort .adress a{color:var(--blaeck);text-decoration:none;border-bottom:2px solid var(--signal)}
-  .kontakt-kort .adress a:hover{color:var(--signal)}
-  .kontakt-kort p{color:var(--dis);font-size:.92rem;margin-top:.9rem;max-width:50ch}
+  .adress-rad{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap}
+  .adress{font-family:"IBM Plex Mono",monospace;font-size:1.05rem;font-weight:700;user-select:all}
+  .kopiera{
+    background:transparent;border:1.5px solid var(--signal);color:var(--signal);
+    font-weight:700;font-size:.85rem;padding:.4rem .9rem;border-radius:8px;cursor:pointer;
+    font-family:"Public Sans",system-ui,sans-serif;
+  }
+  .kopiera:hover{background:color-mix(in srgb, var(--signal) 10%, transparent)}
+  .kontakt-kort p{color:var(--dis);font-size:.92rem;margin-top:.9rem;max-width:52ch}
 
   footer{border-top:1px solid var(--linje);padding:1.8rem 0 2.6rem;color:var(--dis);font-size:.8rem}
-  footer a{color:var(--dis)}
 </style>
 </head>
 <body>
 
 <header>
   <div class="wrap">
-    <a class="logo" href="/">SIGNAL BRIEF</a>
+    <span class="logo">SIGNAL BRIEF</span>
     <span class="publik">För webbyråer</span>
   </div>
 </header>
@@ -115,12 +148,12 @@
 <div class="hero">
   <div class="wrap">
     <h1>Era nästa kunder finns redan. <em>Vi har hittat dem.</em></h1>
-    <p class="ingress">Signal Brief kartlägger lokala företags webbnärvaro.
-    Ur den researchen levererar vi handkvalificerade prospektlistor till
-    webbyråer: företag med starka omdömen — alltså bevisat bra verksamheter —
-    men ingen eller uppenbart eftersatt hemsida.</p>
+    <p class="ingress">Signal Brief kartlägger lokala företags webbnärvaro,
+    område för område. Ur den researchen levererar vi handkvalificerade
+    prospektlistor till webbyråer: företag med starka omdömen — bevisat bra
+    verksamheter — men ingen, trasig eller föråldrad hemsida.</p>
     <div class="cta-rad">
-      <a class="cta" href="mailto:kontakt.signalbrief@gmail.com?subject=10%20gratis%20leads%20till%20%5Bbyr%C3%A5ns%20namn%5D">Få 10 leads gratis</a>
+      <a class="cta" href="#kontakt">Få 10 leads gratis</a>
       <span class="cta-not">Levererat inom 48 timmar. Ingen bindning.</span>
     </div>
   </div>
@@ -128,35 +161,52 @@
 
 <section>
   <div class="wrap">
-    <h2>Så ser en lead ut</h2>
-    <div class="lead-kort" aria-label="Exempel på levererad lead">
-      <div class="rubrik">Lead · exempel, anonymiserad</div>
-      <div class="rad"><span>Företag</span><span class="varde">Byggfirma, 26 anställda</span></div>
-      <div class="rad"><span>Ort / bransch</span><span class="varde">Stockholms län · bygg</span></div>
-      <div class="rad"><span>Google-betyg</span><span class="varde">5,0 (5 omdömen)</span></div>
-      <div class="rad"><span>Webbstatus</span><span class="gap">Sajt olänkad i Google-profilen</span></div>
-      <div class="rad"><span>Kontakt</span><span class="varde">Telefon + e-post</span></div>
-      <div class="fotnot">Varje uppgift levereras med källänk och mätdatum —
-      er säljare kan kontrollera allt innan samtalet. Verklig lead ur vår
-      research, anonymiserad här.</div>
+    <h2>Ur senaste researchen</h2>
+    <p class="sektion-ingress">Tre verkliga leads ur vår pågående kartläggning
+    av Stockholms norrort — anonymiserade här, levererade med namn, kontakt
+    och källänkar i listan.</p>
+    <div class="leads">
+      <div class="lead-kort">
+        <span class="typ">Ingen hemsida</span>
+        <div class="rad"><span class="n">Bransch</span><span class="v">VVS</span></div>
+        <div class="rad"><span class="n">Område</span><span class="v">Täby</span></div>
+        <div class="rad"><span class="n">Google-betyg</span><span class="v">4,5</span></div>
+        <div class="rad"><span class="n">Webbstatus</span><span class="v">Ingen sajt funnen — flervägsverifierat</span></div>
+      </div>
+      <div class="lead-kort">
+        <span class="typ">Sajten nere</span>
+        <div class="rad"><span class="n">Bransch</span><span class="v">Värme &amp; VVS</span></div>
+        <div class="rad"><span class="n">Område</span><span class="v">Vallentuna</span></div>
+        <div class="rad"><span class="n">Google-betyg</span><span class="v">5,0</span></div>
+        <div class="rad"><span class="n">Webbstatus</span><span class="v">Serverfel vid mätning två dagar i rad</span></div>
+      </div>
+      <div class="lead-kort">
+        <span class="typ">Föråldrad sajt</span>
+        <div class="rad"><span class="n">Bransch</span><span class="v">VVS-service</span></div>
+        <div class="rad"><span class="n">Område</span><span class="v">Täby</span></div>
+        <div class="rad"><span class="n">Google-betyg</span><span class="v">4,9</span></div>
+        <div class="rad"><span class="n">Webbstatus</span><span class="v">Senaste spårbara uppdatering 2021</span></div>
+      </div>
     </div>
+    <p class="leads-fotnot">Varje uppgift i en levererad lista har källänk och
+    mätdatum — er säljare kan kontrollera allt innan samtalet. Hittar ni ett
+    fel vill vi veta det. Det är vår kvalitetsgaranti.</p>
   </div>
 </section>
 
 <section>
   <div class="wrap">
-    <h2>Vad som skiljer listorna från skrapade rålistor</h2>
+    <h2>Inte skrapade rålistor</h2>
     <ul class="punkter">
       <li><b>Manuellt kvalificerade.</b> Varje företag är individuellt
-      verifierat — webbstatus kontrolleras med flervägssök, inte bara ett
-      tomt katalogfält.</li>
+      verifierat — "ingen hemsida" påstås först efter flervägssök, inte för
+      att ett katalogfält råkar vara tomt.</li>
       <li><b>Kvalitetströskel.</b> Bara företag med starka omdömen tas med —
-      verksamheter som har råd och skäl att investera i sin webbnärvaro.</li>
-      <li><b>Källa per uppgift.</b> Betyg, gap och kontaktväg levereras med
-      länk och datum. Hittar ni ett fel vill vi veta det — det är vår
-      kvalitetsgaranti.</li>
-      <li><b>Gap-klassade.</b> Ingen hemsida, olänkad hemsida eller föråldrad
-      hemsida — så att er pitch träffar rätt direkt.</li>
+      verksamheter som har råd och skäl att investera i en riktig hemsida.</li>
+      <li><b>Behovsklassade.</b> Ingen hemsida, nedlagd sajt eller föråldrad
+      sajt — så att er pitch träffar rätt direkt.</li>
+      <li><b>Färska.</b> Mätdatum på varje uppgift. Inga listor som sålts
+      runt i åratal.</li>
     </ul>
   </div>
 </section>
@@ -187,22 +237,42 @@
   </div>
 </section>
 
-<section>
+<section id="kontakt">
   <div class="wrap">
-    <h2>Kontakt</h2>
+    <h2>Beställ provet</h2>
     <div class="kontakt-kort">
-      <div class="etikett">E-post</div>
-      <div class="adress"><a href="mailto:kontakt.signalbrief@gmail.com">kontakt.signalbrief@gmail.com</a></div>
+      <div class="etikett">Mejla oss</div>
+      <div class="adress-rad">
+        <span class="adress" id="adress">kontakt.signalbrief@gmail.com</span>
+        <button class="kopiera" id="kopiera" type="button">Kopiera adressen</button>
+      </div>
       <p>Skriv byråns namn och vilket område ni säljer i, så levererar vi
-      de tio första inom 48 timmar.</p>
+      de tio första inom 48 timmar. Ingen bindning, inga följdsamtal om ni
+      inte hör av er igen.</p>
     </div>
   </div>
 </section>
 
 <footer>
-  <div class="wrap">Signal Brief · Research om lokal webbnärvaro ·
-  <a href="/">Till huvudsidan</a></div>
+  <div class="wrap">Signal Brief · Research om lokal webbnärvaro</div>
 </footer>
 
+<script>
+  (function(){
+    var btn = document.getElementById("kopiera");
+    var adr = document.getElementById("adress").textContent;
+    btn.addEventListener("click", function(){
+      function ok(){ btn.textContent = "Kopierad ✓"; setTimeout(function(){ btn.textContent = "Kopiera adressen"; }, 2000); }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(adr).then(ok, fallback);
+      } else { fallback(); }
+      function fallback(){
+        var r = document.createRange(); r.selectNodeContents(document.getElementById("adress"));
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        try { document.execCommand("copy"); ok(); } catch(e){}
+      }
+    });
+  })();
+</script>
 </body>
 </html>

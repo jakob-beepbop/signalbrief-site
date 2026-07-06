@@ -118,7 +118,7 @@
     .cta{transition:none}
   }
 
-  section{padding:clamp(2.2rem,5vw,3.4rem) 0;border-top:1px solid var(--linje)}
+  section{padding:clamp(2.2rem,5vw,3.4rem) 0;border-top:1px solid var(--linje);scroll-margin-top:4.8rem}
   section h2{
     font-family:"IBM Plex Mono",ui-monospace,Consolas,monospace;
     font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--signal);
@@ -167,9 +167,14 @@
     padding:1.8rem;max-width:600px;box-shadow:var(--skugga);
   }
   .kontakt-kort .etikett{font-family:"IBM Plex Mono",Consolas,monospace;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--dis);margin-bottom:.5rem}
-  .kontakt-kort .adress{font-family:"Bricolage Grotesque",sans-serif;font-size:1.25rem;font-weight:700;word-break:break-all}
-  .kontakt-kort .adress a{color:var(--blaeck);text-decoration:none;border-bottom:2px solid var(--signal)}
-  .kontakt-kort .adress a:hover{color:var(--signal)}
+  .adress-rad{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap}
+  .kontakt-kort .adress{font-family:"IBM Plex Mono",Consolas,monospace;font-size:1.02rem;font-weight:700;word-break:break-all;user-select:all}
+  .kopiera{
+    background:transparent;border:1.5px solid var(--signal);color:var(--signal);
+    font-weight:700;font-size:.85rem;padding:.4rem .9rem;border-radius:8px;cursor:pointer;
+    font-family:"Public Sans",system-ui,sans-serif;
+  }
+  .kopiera:hover{background:color-mix(in srgb, var(--signal) 10%, transparent)}
   .kontakt-kort p{color:var(--dis);font-size:.92rem;margin-top:.9rem;max-width:50ch}
 
   footer{border-top:1px solid var(--linje);padding:1.8rem 0 2.6rem;color:var(--dis);font-size:.8rem}
@@ -202,7 +207,7 @@
       kartpaketet och allt oftare AI-assistenter. Signal Brief mäter var ert
       företag syns på alla tre — och flyttar siffrorna där det brister.</p>
       <div class="cta-rad">
-        <a class="cta" href="mailto:kontakt.signalbrief@gmail.com?subject=Synlighetstest%20f%C3%B6r%20%5Bf%C3%B6retagsnamn%5D">Beställ gratis synlighetstest</a>
+        <a class="cta" href="#kontakt">Beställ gratis synlighetstest</a>
         <span class="cta-not">Svar inom två arbetsdagar. Ingen bindning.</span>
       </div>
     </div>
@@ -316,8 +321,11 @@
   <div class="wrap">
     <h2>Kontakt</h2>
     <div class="kontakt-kort">
-      <div class="etikett">E-post</div>
-      <div class="adress"><a href="mailto:kontakt.signalbrief@gmail.com">kontakt.signalbrief@gmail.com</a></div>
+      <div class="etikett">Mejla oss</div>
+      <div class="adress-rad">
+        <span class="adress" id="adress">kontakt.signalbrief@gmail.com</span>
+        <button class="kopiera" id="kopiera" type="button">Kopiera adressen</button>
+      </div>
       <p>Skriv vilket företag det gäller, så återkommer vi med ett
       kostnadsfritt synlighetstest inom två arbetsdagar.</p>
     </div>
@@ -342,6 +350,22 @@
       });
     }, {threshold:.15});
     els.forEach(function(e){ io.observe(e); });
+  })();
+  (function(){
+    var btn = document.getElementById("kopiera");
+    if (!btn) return;
+    var adr = document.getElementById("adress").textContent;
+    btn.addEventListener("click", function(){
+      function ok(){ btn.textContent = "Kopierad ✓"; setTimeout(function(){ btn.textContent = "Kopiera adressen"; }, 2000); }
+      function fallback(){
+        var r = document.createRange(); r.selectNodeContents(document.getElementById("adress"));
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        try { document.execCommand("copy"); ok(); } catch(e){}
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(adr).then(ok, fallback);
+      } else { fallback(); }
+    });
   })();
 </script>
 
