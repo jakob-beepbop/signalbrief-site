@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Handkvalificerade leads för webbyråer: lokala företag med starka omdömen men ingen eller trasig hemsida. Första 10 gratis.">
+<meta name="description" content="Handkvalificerade leads för webbyråer: lokala företag med starka omdömen men ingen eller trasig hemsida. Första 5 gratis.">
 <title>Signal Brief för webbyråer — kvalificerade leads</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,13 +11,13 @@
 <style>
   :root{
     --papper:#F4F7F5;--blaeck:#0C1B18;--signal:#117A56;--signal-ljus:#1CA678;
-    --varning:#C4622D;--dis:#576964;--linje:#D6E1DB;--kort:#FFFFFF;
+    --varning:#C4622D;--dis:#44534E;--linje:#D6E1DB;--kort:#FFFFFF;
     --skugga:0 1px 2px rgba(12,27,24,.05),0 8px 24px -12px rgba(12,27,24,.12);
   }
   @media (prefers-color-scheme: dark){
     :root{
       --papper:#0C1614;--blaeck:#E6F0EC;--signal:#2FBE8D;--signal-ljus:#2FBE8D;
-      --varning:#E08B57;--dis:#8FA39D;--linje:#223330;--kort:#14211E;
+      --varning:#E08B57;--dis:#A7BBB4;--linje:#223330;--kort:#14211E;
       --skugga:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.5);
     }
   }
@@ -32,7 +32,7 @@
     background-size:56px 56px;
     color:var(--blaeck);
     font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
-    line-height:1.6;
+    line-height:1.65;font-size:1.05rem;
   }
   a{color:var(--signal)}
   a:focus-visible,button:focus-visible{outline:3px solid var(--signal-ljus);outline-offset:2px;border-radius:4px}
@@ -74,8 +74,8 @@
   @media (max-width:760px){ .leads{grid-template-columns:1fr} }
   .lead-kort{
     background:var(--kort);border:1px solid var(--linje);border-radius:14px;
-    padding:1.3rem;box-shadow:var(--skugga);
-    font-family:"IBM Plex Mono",monospace;font-size:.82rem;
+    padding:1.35rem;box-shadow:var(--skugga);
+    font-family:"IBM Plex Mono",monospace;font-size:.9rem;
     transition:transform .18s ease, box-shadow .18s ease;
     opacity:0;transform:translateY(10px);animation:mata .5s ease forwards;
   }
@@ -85,7 +85,7 @@
   @keyframes mata{to{opacity:1;transform:none}}
   .lead-kort:hover{transform:translateY(-3px);box-shadow:0 2px 4px rgba(12,27,24,.06),0 16px 32px -12px rgba(12,27,24,.18)}
   @media (prefers-reduced-motion: reduce){
-    .lead-kort{animation:none;opacity:1;transform:none}
+    .lead-kort,.lead-kort .typ{animation:none;opacity:1;transform:none}
     .lead-kort:hover{transform:none}
     .cta{transition:none}
   }
@@ -93,7 +93,13 @@
     display:inline-block;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;
     color:var(--varning);border:1px solid color-mix(in srgb, var(--varning) 40%, transparent);
     border-radius:99px;padding:.15rem .6rem;margin-bottom:.9rem;font-weight:700;
+    opacity:0;transform:scale(1.5) rotate(-4deg);
+    animation:stampel .35s cubic-bezier(.2,1.4,.4,1) forwards;
   }
+  .lead-kort:nth-child(1) .typ{animation-delay:.6s}
+  .lead-kort:nth-child(2) .typ{animation-delay:1.2s}
+  .lead-kort:nth-child(3) .typ{animation-delay:1.8s}
+  @keyframes stampel{to{opacity:1;transform:none}}
   .lead-kort .rad{display:flex;justify-content:space-between;gap:.8rem;padding:.42rem 0;border-top:1px dashed var(--linje)}
   .lead-kort .rad:first-of-type{border-top:none}
   .lead-kort .n{color:var(--dis)}
@@ -153,7 +159,7 @@
     prospektlistor till webbyråer: företag med starka omdömen — bevisat bra
     verksamheter — men ingen, trasig eller föråldrad hemsida.</p>
     <div class="cta-rad">
-      <a class="cta" href="#kontakt">Få 10 leads gratis</a>
+      <a class="cta" href="#kontakt">Få 5 leads gratis</a>
       <span class="cta-not">Levererat inom 48 timmar. Ingen bindning.</span>
     </div>
   </div>
@@ -217,21 +223,21 @@
     <div class="pris">
       <article>
         <div class="belopp gratis">0 kr</div>
-        <h3>Provet: 10 leads</h3>
+        <h3>Provet: 5 leads</h3>
         <p>I ert upptagningsområde, inom 48 timmar. Bedöm kvaliteten själva
         innan ni betalar något.</p>
       </article>
       <article>
-        <div class="belopp">3 995 kr</div>
-        <h3>Per 100 leads</h3>
-        <p>Handkvalificerade enligt ovan. 40 kr per lead — jämför med
-        marknadens importerade listpriser.</p>
+        <div class="belopp">3 495 kr</div>
+        <h3>Paket: 50 leads</h3>
+        <p>Handkvalificerade enligt ovan, levererade på en gång. Knappt
+        70 kr per lead.</p>
       </article>
       <article>
         <div class="belopp">1 495 kr/v</div>
         <h3>25 färska per vecka</h3>
-        <p>Löpande påfyllning för byråer med aktiv säljprocess. Avsluta när
-        ni vill.</p>
+        <p>Bästa priset per lead — löpande påfyllning för byråer med aktiv
+        säljprocess. Avsluta när ni vill.</p>
       </article>
     </div>
   </div>
@@ -247,7 +253,7 @@
         <button class="kopiera" id="kopiera" type="button">Kopiera adressen</button>
       </div>
       <p>Skriv byråns namn och vilket område ni säljer i, så levererar vi
-      de tio första inom 48 timmar. Ingen bindning, inga följdsamtal om ni
+      de fem första inom 48 timmar. Ingen bindning, inga följdsamtal om ni
       inte hör av er igen.</p>
     </div>
   </div>
