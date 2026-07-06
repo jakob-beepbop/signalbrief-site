@@ -1,0 +1,391 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Signal Brief bygger hemsidor för lokala företag till fast pris — ni äger allt, inga månadskostnader. Börja med en gratis synlighetskoll.">
+<title>Signal Brief — Hemsidor för lokala företag, fast pris</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=IBM+Plex+Mono:wght@400;600;700&family=Public+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --papper:#F4F7F5;
+    --blaeck:#0C1B18;
+    --signal:#117A56;
+    --signal-ljus:#1CA678;
+    --varning:#C4622D;
+    --karta:#2B5D8C;
+    --dis:#44534E;
+    --linje:#D6E1DB;
+    --kort:#FFFFFF;
+    --skugga:0 1px 2px rgba(12,27,24,.05),0 8px 24px -12px rgba(12,27,24,.12);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --papper:#0C1614;--blaeck:#E6F0EC;--signal:#2FBE8D;--signal-ljus:#2FBE8D;
+      --varning:#E08B57;--karta:#6FA3D0;--dis:#A7BBB4;--linje:#223330;
+      --kort:#14211E;--skugga:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.5);
+    }
+  }
+  :root[data-theme="dark"]{
+    --papper:#0C1614;--blaeck:#E6F0EC;--signal:#2FBE8D;--signal-ljus:#2FBE8D;
+    --varning:#E08B57;--karta:#6FA3D0;--dis:#A7BBB4;--linje:#223330;
+    --kort:#14211E;--skugga:0 1px 2px rgba(0,0,0,.4),0 8px 24px -12px rgba(0,0,0,.5);
+  }
+  :root[data-theme="light"]{
+    --papper:#F4F7F5;--blaeck:#0C1B18;--signal:#117A56;--signal-ljus:#1CA678;
+    --varning:#C4622D;--karta:#2B5D8C;--dis:#44534E;--linje:#D6E1DB;
+    --kort:#FFFFFF;--skugga:0 1px 2px rgba(12,27,24,.05),0 8px 24px -12px rgba(12,27,24,.12);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto} }
+  body{
+    background:
+      linear-gradient(var(--papper),var(--papper)) padding-box,
+      var(--papper);
+    background-image:
+      linear-gradient(to right, color-mix(in srgb, var(--linje) 34%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--linje) 34%, transparent) 1px, transparent 1px);
+    background-size:56px 56px;
+    color:var(--blaeck);
+    font-family:"Public Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+    line-height:1.65;font-size:1.05rem;
+  }
+  .mono{font-family:"IBM Plex Mono",ui-monospace,Consolas,monospace}
+  a{color:var(--signal)}
+  a:focus-visible,button:focus-visible{outline:3px solid var(--signal-ljus);outline-offset:2px;border-radius:4px}
+
+  .wrap{max-width:1020px;margin:0 auto;padding:0 clamp(1rem,4vw,2rem)}
+
+  header{padding:1.3rem 0;border-bottom:1px solid var(--linje);background:color-mix(in srgb, var(--papper) 82%, transparent);backdrop-filter:blur(6px);position:sticky;top:0;z-index:10}
+  header .wrap{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;flex-wrap:wrap}
+  .logo{font-family:"IBM Plex Mono",ui-monospace,Consolas,monospace;font-weight:700;font-size:1.02rem;letter-spacing:.05em;color:var(--blaeck);text-decoration:none}
+  .logo::before{content:"▮ ";color:var(--signal)}
+  header nav{font-size:.85rem}
+  header nav a{color:var(--dis);text-decoration:none;margin-left:1.2rem}
+  header nav a:hover{color:var(--signal)}
+
+  /* HERO — tes till vänster, levande avläsning till höger */
+  .hero{padding:clamp(2.6rem,7vw,5.2rem) 0 clamp(2.2rem,5vw,3.6rem)}
+  .hero .wrap{display:grid;grid-template-columns:minmax(0,10fr) minmax(0,9fr);gap:clamp(1.6rem,4vw,3.2rem);align-items:center}
+  @media (max-width:760px){ .hero .wrap{grid-template-columns:1fr} }
+  .hero h1{
+    font-family:"Bricolage Grotesque","Public Sans",system-ui,sans-serif;
+    font-size:clamp(1.9rem,4.6vw,3rem);font-weight:800;letter-spacing:-.01em;
+    line-height:1.08;text-wrap:balance;
+  }
+  .hero h1 em{
+    font-style:normal;color:var(--signal);
+    background:linear-gradient(currentColor,currentColor) no-repeat 0 94%;
+    background-size:0% 3px;animation:svep .7s ease 1.1s forwards;
+  }
+  @keyframes svep{to{background-size:100% 3px}}
+  .hero .wrap>div:first-child{opacity:0;transform:translateY(12px);animation:mata .6s ease .05s forwards}
+  .hero p.ingress{color:var(--dis);max-width:50ch;margin-top:1.15rem;font-size:1.06rem}
+  .cta-rad{margin-top:1.7rem;display:flex;gap:1rem;align-items:center;flex-wrap:wrap}
+  .cta{
+    display:inline-block;background:var(--signal);color:#fff;text-decoration:none;
+    font-weight:700;font-size:1rem;padding:.85rem 1.5rem;border-radius:10px;
+    box-shadow:var(--skugga);transition:transform .15s ease, background .15s ease;
+  }
+  .cta:hover{background:var(--signal-ljus);transform:translateY(-1px)}
+  .cta-not{font-size:.85rem;color:var(--dis)}
+
+  /* Signaturen: rapporten som skriver fram sig, med sonar bakom */
+  .panel-scen{position:relative}
+  .sonar{position:absolute;inset:0;pointer-events:none;overflow:visible}
+  .sonar span{
+    position:absolute;top:50%;left:50%;width:130px;height:130px;margin:-65px 0 0 -65px;
+    border:1.5px solid var(--signal);border-radius:50%;opacity:0;
+    animation:ring 5.5s linear infinite;
+  }
+  .sonar span:nth-child(2){animation-delay:1.8s}
+  .sonar span:nth-child(3){animation-delay:3.6s}
+  @keyframes ring{0%{transform:scale(.35);opacity:.3}100%{transform:scale(3.4);opacity:0}}
+  .avlasning{
+    position:relative;z-index:1;
+    background:var(--kort);border:1px solid var(--linje);border-radius:14px;
+    padding:1.5rem;box-shadow:var(--skugga);
+    font-family:"IBM Plex Mono",ui-monospace,Consolas,monospace;font-size:.88rem;
+  }
+  .avlasning .rubrik{color:var(--dis);font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;margin-bottom:1rem;display:flex;justify-content:space-between;gap:.6rem;flex-wrap:wrap}
+  .avlasning .rubrik .punkt{color:var(--signal);display:inline-block;animation:puls 2.4s ease-in-out infinite}
+  @keyframes puls{0%,100%{opacity:1}50%{opacity:.25}}
+  .avlasning .rad{
+    display:flex;justify-content:space-between;gap:1rem;padding:.55rem 0;
+    border-top:1px dashed var(--linje);
+  }
+  .avlasning .rad:first-of-type{border-top:none}
+  .ok{color:var(--signal);font-weight:700;white-space:nowrap}
+  .miss{color:var(--varning);font-weight:700;white-space:nowrap}
+  /* domsluten stämplas in strax efter sin rad */
+  .avlasning .ok,.avlasning .miss{
+    opacity:0;transform:scale(1.6) rotate(-5deg);
+    animation:stampel .35s cubic-bezier(.2,1.4,.4,1) forwards;
+  }
+  .avlasning .rad:nth-of-type(1) .ok,.avlasning .rad:nth-of-type(1) .miss{animation-delay:.8s}
+  .avlasning .rad:nth-of-type(2) .ok,.avlasning .rad:nth-of-type(2) .miss{animation-delay:1.5s}
+  .avlasning .rad:nth-of-type(3) .ok,.avlasning .rad:nth-of-type(3) .miss{animation-delay:2.2s}
+  @keyframes stampel{to{opacity:1;transform:none}}
+  .avlasning .fotnot{margin-top:1rem;color:var(--dis);font-size:.74rem;font-family:"Public Sans",system-ui,sans-serif;border-top:1px solid var(--linje);padding-top:.85rem}
+  .markor{display:inline-block;width:.55em;height:1.1em;background:var(--signal);vertical-align:text-bottom;margin-left:2px;animation:blink 1.1s steps(1) infinite}
+  @keyframes blink{50%{opacity:0}}
+  /* sekventiell frammatning */
+  .avlasning .rad, .avlasning .fotnot{opacity:0;transform:translateY(4px);animation:mata .45s ease forwards}
+  .avlasning .rad:nth-of-type(1){animation-delay:.35s}
+  .avlasning .rad:nth-of-type(2){animation-delay:1.05s}
+  .avlasning .rad:nth-of-type(3){animation-delay:1.75s}
+  .avlasning .fotnot{animation-delay:2.45s}
+  @keyframes mata{to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion: reduce){
+    .avlasning .rad,.avlasning .fotnot,.avlasning .ok,.avlasning .miss,
+    .hero .wrap>div:first-child{animation:none;opacity:1;transform:none}
+    .hero h1 em{animation:none;background-size:100% 3px}
+    .markor,.avlasning .rubrik .punkt{animation:none}
+    .sonar{display:none}
+    .cta{transition:none}
+  }
+
+  section{padding:clamp(2.2rem,5vw,3.4rem) 0;border-top:1px solid var(--linje);scroll-margin-top:4.8rem}
+  section h2{
+    font-family:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+    font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--signal);
+    margin-bottom:1.5rem;
+  }
+
+  /* Tre vägar */
+  .vagar{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+  @media (max-width:700px){ .vagar{grid-template-columns:1fr} }
+  .vag{background:var(--kort);border:1px solid var(--linje);border-radius:12px;padding:1.2rem;box-shadow:var(--skugga);transition:transform .18s ease}
+  .vag:hover{transform:translateY(-3px)}
+  .vag svg{display:block;margin-bottom:.8rem}
+  /* ikonerna ritar sig när kortet scrollas fram */
+  .vag svg .rits{stroke-dasharray:1;stroke-dashoffset:1}
+  .vag.syns svg .rits{animation:rita .9s ease .15s forwards}
+  @keyframes rita{to{stroke-dashoffset:0}}
+  .vag svg .fyll{opacity:0;transition:opacity .4s ease .8s}
+  .vag.syns svg .fyll{opacity:1}
+  .vagar .vag:nth-child(2){transition-delay:.1s}
+  .vagar .vag:nth-child(3){transition-delay:.2s}
+  .steg article:nth-child(2){transition-delay:.1s}
+  .steg article:nth-child(3){transition-delay:.2s}
+  @media (prefers-reduced-motion: reduce){
+    .vag:hover{transform:none}
+    .vag svg .rits{stroke-dasharray:none;stroke-dashoffset:0}
+    .vag.syns svg .rits{animation:none}
+    .vag svg .fyll{opacity:1;transition:none}
+  }
+  .vag h3{font-size:.98rem;font-weight:700}
+  .vag p{color:var(--dis);font-size:.88rem;margin-top:.3rem}
+
+  /* Tjänster */
+  .tjanst{
+    display:grid;grid-template-columns:1fr auto;gap:.4rem 2rem;padding:1.15rem 1rem;
+    border-top:1px dashed var(--linje);align-items:baseline;border-radius:10px;
+    transition:background .15s ease;margin:0 -1rem;
+  }
+  .tjanst:hover{background:color-mix(in srgb, var(--signal) 6%, transparent)}
+  .tjanst:first-of-type{border-top:none}
+  .tjanst h3{font-family:"Bricolage Grotesque","Public Sans",sans-serif;font-size:1.12rem;font-weight:700}
+  .tjanst .pris{font-family:"IBM Plex Mono",Consolas,monospace;font-weight:700;white-space:nowrap;font-variant-numeric:tabular-nums}
+  .tjanst p{grid-column:1/-1;color:var(--dis);font-size:.95rem;max-width:64ch}
+  .gratis{color:var(--signal)}
+
+  /* Så går det till — äkta sekvens, därför numrerad */
+  .steg{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;counter-reset:steg}
+  @media (max-width:700px){ .steg{grid-template-columns:1fr} }
+  .steg article{counter-increment:steg;background:var(--kort);border:1px solid var(--linje);border-radius:12px;padding:1.2rem;box-shadow:var(--skugga)}
+  .steg article::before{
+    content:counter(steg);display:inline-grid;place-items:center;width:1.9rem;height:1.9rem;
+    border-radius:50%;background:var(--signal);color:#fff;font-family:"IBM Plex Mono",monospace;
+    font-weight:700;font-size:.9rem;margin-bottom:.7rem;
+  }
+  .steg h3{font-size:.98rem;font-weight:700}
+  .steg p{color:var(--dis);font-size:.88rem;margin-top:.3rem}
+
+  .principer p{max-width:64ch;color:var(--dis)}
+  .principer p b{color:var(--blaeck)}
+  .principer p+p{margin-top:.95rem}
+
+  .kontakt-kort{
+    background:var(--kort);border:1px solid var(--linje);border-radius:14px;
+    padding:1.8rem;max-width:600px;box-shadow:var(--skugga);
+  }
+  .kontakt-kort .etikett{font-family:"IBM Plex Mono",Consolas,monospace;font-size:.7rem;letter-spacing:.13em;text-transform:uppercase;color:var(--dis);margin-bottom:.5rem}
+  .adress-rad{display:flex;gap:.8rem;align-items:center;flex-wrap:wrap}
+  .kontakt-kort .adress{font-family:"IBM Plex Mono",Consolas,monospace;font-size:1.02rem;font-weight:700;word-break:break-all;user-select:all}
+  .kopiera{
+    background:transparent;border:1.5px solid var(--signal);color:var(--signal);
+    font-weight:700;font-size:.85rem;padding:.4rem .9rem;border-radius:8px;cursor:pointer;
+    font-family:"Public Sans",system-ui,sans-serif;
+  }
+  .kopiera:hover{background:color-mix(in srgb, var(--signal) 10%, transparent)}
+  .kontakt-kort p{color:var(--dis);font-size:.92rem;margin-top:.9rem;max-width:50ch}
+
+  footer{border-top:1px solid var(--linje);padding:1.8rem 0 2.6rem;color:var(--dis);font-size:.8rem}
+
+  /* scroll-reveal */
+  .rev{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+  .rev.syns{opacity:1;transform:none}
+  @media (prefers-reduced-motion: reduce){ .rev{opacity:1;transform:none;transition:none} }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top">SIGNAL BRIEF</a>
+    <nav>
+      <a href="#tjanster">Tjänster</a>
+      <a href="#process">Så går det till</a>
+      <a href="#princip">Principer</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+  </div>
+</header>
+
+<div class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1>En riktig hemsida för ert företag. <em>Fast pris, ni äger allt.</em></h1>
+      <p class="ingress">Många av de bästa lokala företagen förlorar jobb till
+      sämre konkurrenter — för att webben inte visar hur bra de är. Vi bygger
+      hemsidan som rättar till det: modern, mobilanpassad, klar inom en vecka.
+      Ingen månadskostnad, inga abonnemang.</p>
+      <div class="cta-rad">
+        <a class="cta" href="#kontakt">Börja med en gratis synlighetskoll</a>
+        <span class="cta-not">Vi visar vad kunderna ser idag — innan ni betalar något.</span>
+      </div>
+    </div>
+
+    <div class="panel-scen">
+    <div class="sonar" aria-hidden="true"><span></span><span></span><span></span></div>
+    <div class="avlasning" aria-label="Exempel på synlighetskoll">
+      <div class="rubrik"><span><span class="punkt">●</span> SYNLIGHETSKOLL</span><span>byggfirma · Stockholms län</span></div>
+      <div class="rad"><span>Googlar man företagsnamnet</span><span class="ok">SYNS ✓</span></div>
+      <div class="rad"><span>Söker man "byggfirma [ort]"</span><span class="miss">SAKNAS —</span></div>
+      <div class="rad"><span>Frågar man en AI om rekommendation</span><span class="miss">SAKNAS —<span class="markor" aria-hidden="true"></span></span></div>
+      <div class="fotnot">Så här ser kollen ut — en verklig, anonymiserad
+      avläsning. Er gör vi gratis, med källa och datum på varje rad, innan
+      ni bestämmer något.</div>
+    </div>
+    </div>
+  </div>
+</div>
+
+<section id="tjanster">
+  <div class="wrap">
+    <h2>Tjänster &amp; priser</h2>
+    <div class="tjanst rev">
+      <h3>Synlighetskoll</h3><span class="pris gratis">0 kr</span>
+      <p>Vi kollar vad kunder ser när de söker efter er — och skickar
+      avläsningen med källa och datum per rad. Gratis, oavsett om ni går
+      vidare.</p>
+    </div>
+    <div class="tjanst rev">
+      <h3>Hemsida, enkel</h3><span class="pris">12 900 kr fast</span>
+      <p>Modern, mobilanpassad sida ni äger själva — ingen månadskostnad,
+      inga dolda avgifter. En revisionsrunda ingår.</p>
+    </div>
+    <div class="tjanst rev">
+      <h3>Hemsida, utökad</h3><span class="pris">19 900 kr fast</span>
+      <p>Allt i enkla paketet, plus att vi åtgärdar det synlighetstestet
+      hittar i er Google-närvaro: profil, länkning och omdömesuppsättning.
+      Er insats är cirka tio minuter; inget publiceras utan er avstämning.</p>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <h2>Så går det till</h2>
+    <div class="steg">
+      <article class="rev">
+        <h3>Gratis synlighetskoll</h3>
+        <p>Ni mejlar företagsnamnet. Vi visar vad kunderna ser när de söker
+        er idag — med källa och datum, som avläsningen här ovan.</p>
+      </article>
+      <article class="rev">
+        <h3>Förslag och fast pris</h3>
+        <p>Vill ni gå vidare får ni ett konkret förslag på er nya sida och
+        ett fast pris. Inga överraskningar, ingen förskottsbetalning.</p>
+      </article>
+      <article class="rev">
+        <h3>Vi bygger — ni äger allt</h3>
+        <p>Klar inom en vecka, en revisionsrunda ingår. Er domän, ert
+        innehåll, era besökare. Inga månadskostnader någonsin.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="princip" class="principer">
+  <div class="wrap">
+    <h2>Principer</h2>
+    <p><b>Vi säljer mätningar, inte påståenden.</b> Varje uppgift vi levererar —
+    ett betyg, en placering, ett synlighetsgap — har en källa och ett datum,
+    och ni kan kontrollera den själva.</p>
+    <p><b>Fast pris, definierat slut.</b> Ni vet vad det kostar och vad som
+    ingår innan vi börjar. Inga abonnemang som tickar.</p>
+    <p><b>Nystartade, och transparenta med det.</b> Signal Brief är en ny
+    tjänst. Vi har inga hundra kundlogotyper att visa — därför är första
+    mätningen gratis, så att arbetet får tala.</p>
+  </div>
+</section>
+
+<section id="kontakt">
+  <div class="wrap">
+    <h2>Kontakt</h2>
+    <div class="kontakt-kort">
+      <div class="etikett">Mejla oss</div>
+      <div class="adress-rad">
+        <span class="adress" id="adress">kontakt.signalbrief@gmail.com</span>
+        <button class="kopiera" id="kopiera" type="button">Kopiera adressen</button>
+      </div>
+      <p>Skriv vilket företag det gäller, så återkommer vi med ett
+      kostnadsfritt synlighetstest inom två arbetsdagar.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">Signal Brief · Synlighetsmätning och åtgärd för lokala företag</div>
+</footer>
+
+<script>
+  (function(){
+    var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    var els = document.querySelectorAll(".rev");
+    if (reduce || !("IntersectionObserver" in window)) {
+      els.forEach(function(e){ e.classList.add("syns"); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) { en.target.classList.add("syns"); io.unobserve(en.target); }
+      });
+    }, {threshold:.15});
+    els.forEach(function(e){ io.observe(e); });
+  })();
+  (function(){
+    var btn = document.getElementById("kopiera");
+    if (!btn) return;
+    var adr = document.getElementById("adress").textContent;
+    btn.addEventListener("click", function(){
+      function ok(){ btn.textContent = "Kopierad ✓"; setTimeout(function(){ btn.textContent = "Kopiera adressen"; }, 2000); }
+      function fallback(){
+        var r = document.createRange(); r.selectNodeContents(document.getElementById("adress"));
+        var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+        try { document.execCommand("copy"); ok(); } catch(e){}
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(adr).then(ok, fallback);
+      } else { fallback(); }
+    });
+  })();
+</script>
+
+</body>
+</html>
