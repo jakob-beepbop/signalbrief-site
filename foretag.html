@@ -541,9 +541,8 @@
     kostnadsfritt förslag med fast pris inom två arbetsdagar.</p>
     <div class="kontakt-rad">
       <form class="form-kort" id="offert" method="POST" action="https://api.web3forms.com/submit" novalidate>
-        <!-- TODO(JK): skapa gratiskonto på web3forms.com och klistra in
-             access key i WEB3FORMS_KEY längst ner i skriptet. Tills dess
-             används kopiera-fallbacken automatiskt. -->
+        <!-- Web3Forms-nyckeln (JK:s konto) ligger i WEB3FORMS_KEY längst
+             ner i skriptet. Utan nyckel: kopiera-fallback automatiskt. -->
         <input type="checkbox" name="botcheck" class="dold" tabindex="-1" autocomplete="off" aria-hidden="true">
         <div class="falt-rad">
           <label class="falt"><span>Paket <i>(går att ändra sig)</i></span>
@@ -694,7 +693,7 @@
     });
 
     /* formulär: Web3Forms när nyckel finns, annars kopiera-fallback (aldrig mailto) */
-    var WEB3FORMS_KEY = ""; /* TODO(JK): access key från web3forms.com */
+    var WEB3FORMS_KEY = "fd04b178-a5bc-4bb8-a211-83a6527b8d3c";
     var form = document.getElementById("offert");
     var status = document.getElementById("f-status");
     var skicka = document.getElementById("f-skicka");
