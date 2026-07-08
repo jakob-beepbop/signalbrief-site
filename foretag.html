@@ -5,227 +5,297 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="Signal Brief bygger hemsidor för lokala företag till fast pris från 6 900 kr — ni äger allt, inga månadskostnader. Klar inom en vecka.">
 <title>Signal Brief — Hemsidor för lokala företag, fast pris</title>
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="%2315694A"/><path d="M9 17.5l5 5 9-11.5" stroke="%23FFFFFF" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=IBM+Plex+Mono:wght@400;500&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bitter:wght@500;600;700&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
+  /* Signal Brief design v3 (2026-07-08). Röst: varm, lokal, jordnära — clean.
+     Grön = varumärket (signal/grönt ljus), inte branschmall. Ingen mono, inga
+     eyebrow-etiketter. OBS: backdrop-filter + scroll-behavior:smooth frös
+     Chrome-renderaren 2026-07-07 — använd ingen av dem här. */
   :root{
-    --gran:#101913;          /* djup granskog — mörka scener */
-    --gran-ljus:#1A2620;     /* kort på mörk botten */
-    --papper:#F4F2EC;        /* ljusa sektioner */
-    --kol:#211F1A;           /* text på ljust */
-    --dis:#6E6A5E;           /* sekundär text på ljust */
-    --skum:#E9E5D8;          /* text på mörkt */
-    --skum-dis:#A8A797;      /* sekundär text på mörkt */
-    --massing:#B98A2E;       /* mässing — accent */
-    --massing-ljus:#D9A83C;  /* mässing på mörk botten */
-    --signal:#3FA66A;        /* kvitto-grönt i exempel */
-    --linje-ljus:#DDD9CC;
-    --linje-mork:#2A3830;
+    color-scheme: light dark;
+    --bg:#F5F8F6;            /* off-white, svag grön ton — INTE cream */
+    --yta:#FFFFFF;
+    --blaeck:#152019;
+    --dis:#41544A;
+    --gron:#15694A;          /* brandgrön, text/knappar på ljust */
+    --gron-ljus:#3FBE8D;     /* accent på mörk botten */
+    --gron-djup:#0D2A1D;     /* mörka scener (hero, kontaktkort) */
+    --gron-natt:#123A28;     /* ljusare yta i mörka scener */
+    --varm:#9C5A1F;          /* varning/"före" — sparsamt */
+    --linje:#DAE4DE;
+    --linje-mork:#1E4630;
+    --skum:#EAF2EC;          /* text på mörkt */
+    --skum-dis:#9FB9AB;      /* sekundär text på mörkt */
+    --skugga:0 1px 2px rgba(21,32,25,.05),0 14px 34px -18px rgba(21,32,25,.22);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0E1712; --yta:#15211A; --blaeck:#E7EFE9; --dis:#A8BCB0;
+      --gron:#45C494; --gron-ljus:#3FBE8D; --gron-djup:#0B1F16; --gron-natt:#143424;
+      --varm:#DA9055; --linje:#22322A; --linje-mork:#20402E;
+      --skum:#E7EFE9; --skum-dis:#9FB9AB;
+      --skugga:0 1px 2px rgba(0,0,0,.4),0 14px 34px -18px rgba(0,0,0,.6);
+    }
   }
   *{margin:0;padding:0;box-sizing:border-box}
-  /* OBS: scroll-behavior:smooth + backdrop-filter på sticky header
-     frös Chrome-renderaren (verifierat 2026-07-07) — använd inte här */
-  body{font-family:"Public Sans",system-ui,sans-serif;background:var(--papper);color:var(--kol);
-       font-size:1.05rem;line-height:1.65;-webkit-font-smoothing:antialiased}
-  .wrap{max-width:1080px;margin:0 auto;padding:0 24px}
-  h1,h2,h3{font-family:"Bricolage Grotesque","Public Sans",sans-serif;line-height:1.08;letter-spacing:-.015em}
+  body{font-family:"Karla",system-ui,sans-serif;background:var(--bg);color:var(--blaeck);
+       font-size:1.06rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:"Bitter",Georgia,serif;line-height:1.12;letter-spacing:-.01em;text-wrap:balance}
   section{scroll-margin-top:84px}
-  .mono{font-family:"IBM Plex Mono",monospace}
-  :focus-visible{outline:3px solid var(--massing);outline-offset:3px;border-radius:2px}
+  a{color:var(--gron)}
+  :focus-visible{outline:3px solid var(--gron-ljus);outline-offset:3px;border-radius:3px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(1.1rem,4vw,1.6rem)}
+  .dold{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
 
   /* ---------- header ---------- */
-  header{position:sticky;top:0;z-index:50;background:#0E1611;
-         border-bottom:1px solid var(--linje-mork)}
-  header .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
-  .logo{font-family:"IBM Plex Mono",monospace;font-weight:500;letter-spacing:.22em;font-size:.85rem;
-        color:var(--skum);text-decoration:none}
-  .logo b{color:var(--massing-ljus);font-weight:500}
-  nav{display:flex;gap:26px}
-  nav a{color:var(--skum-dis);text-decoration:none;font-size:.9rem;font-weight:500}
-  nav a:hover{color:var(--skum)}
-  @media(max-width:720px){ nav{display:none} }
+  header{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--linje)}
+  header .wrap{display:flex;align-items:center;justify-content:space-between;height:62px}
+  .logo{display:inline-flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--blaeck);
+        font-family:"Bitter",Georgia,serif;font-weight:700;font-size:1.08rem;letter-spacing:-.01em}
+  .logo svg{flex:none}
+  nav{display:flex;gap:1.6rem}
+  nav a{color:var(--dis);text-decoration:none;font-size:.94rem;font-weight:500}
+  nav a:hover{color:var(--blaeck);text-decoration:underline;text-underline-offset:4px}
+  @media(max-width:760px){ nav{display:none} }
 
   /* ---------- hero ---------- */
   .hero{background:
-        radial-gradient(1200px 600px at 80% -10%, #1C2C22 0%, transparent 60%),
-        var(--gran);
-        color:var(--skum);padding:72px 0 84px;overflow:hidden}
-  .hero .wrap{display:grid;grid-template-columns:1fr;gap:48px}
-  .brod{font-family:"IBM Plex Mono",monospace;font-size:.78rem;letter-spacing:.24em;color:var(--massing-ljus);
-        text-transform:uppercase;margin-bottom:18px}
-  .hero h1{font-size:clamp(2.3rem,5.4vw,3.9rem);font-weight:750;max-width:17ch}
-  .hero h1 em{font-style:normal;color:var(--massing-ljus)}
-  .ingress{color:var(--skum-dis);max-width:56ch;margin:22px 0 30px;font-size:1.08rem}
-  .cta-rad{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
-  .cta{display:inline-block;background:var(--massing);color:#14110A;text-decoration:none;font-weight:700;
-       padding:15px 30px;border-radius:6px;font-size:1.02rem;transition:transform .18s ease,background .18s ease}
-  .cta:hover{background:var(--massing-ljus);transform:translateY(-2px)}
-  .cta-not{color:var(--skum-dis);font-size:.9rem;max-width:32ch}
-  .villkor{display:flex;gap:22px;flex-wrap:wrap;margin-top:34px;padding-top:22px;border-top:1px solid var(--linje-mork)}
-  .villkor span{font-family:"IBM Plex Mono",monospace;font-size:.78rem;color:var(--skum-dis)}
-  .villkor b{color:var(--skum);font-weight:500}
+        radial-gradient(900px 480px at 82% -8%, var(--gron-natt) 0%, transparent 62%),
+        var(--gron-djup);
+        color:var(--skum);padding:clamp(3.4rem,7vw,5.4rem) 0 clamp(3rem,6vw,4.6rem)}
+  .hero .wrap{display:grid;grid-template-columns:1fr;gap:clamp(2.2rem,5vw,3rem)}
+  @media(min-width:960px){ .hero .wrap{grid-template-columns:1.05fr .95fr;align-items:center} }
+  .hero h1{font-size:clamp(2.1rem,4.6vw,3.4rem);font-weight:700;max-width:18ch;line-height:1.1;letter-spacing:.005em}
+  .hero h1 em{font-style:normal;color:var(--gron-ljus)}
+  .ingress{color:var(--skum-dis);max-width:54ch;margin:1.3rem 0 1.8rem;font-size:1.08rem;line-height:1.72}
+  .cta-rad{display:flex;gap:1.1rem;align-items:center;flex-wrap:wrap}
+  .cta{display:inline-block;background:var(--gron-ljus);color:#07150E;text-decoration:none;
+       font-weight:700;padding:.95rem 1.7rem;border-radius:9px;font-size:1.02rem;border:0;cursor:pointer;
+       font-family:"Karla",system-ui,sans-serif;transition:transform .15s ease,filter .15s ease;box-shadow:var(--skugga)}
+  .cta:hover{filter:brightness(1.07);transform:translateY(-1px)}
+  .cta-not{color:var(--skum-dis);font-size:.9rem;max-width:30ch;line-height:1.5}
+  .villkor{display:flex;gap:.6rem 2rem;flex-wrap:wrap;margin-top:2.1rem;padding-top:1.4rem;border-top:1px solid var(--linje-mork)}
+  .villkor span{font-size:.92rem;color:var(--skum-dis)}
+  .villkor b{color:var(--skum);font-weight:700}
 
   /* ---------- före/efter-reglaget (signaturen) ---------- */
-  .jamfor-scen{margin-top:6px}
-  .jamfor{position:relative;border-radius:12px;overflow:hidden;border:1px solid var(--linje-mork);
-          box-shadow:0 30px 80px rgba(0,0,0,.45);background:#fff;
-          --pos:50%}
-  .jamfor .balk{display:flex;gap:6px;align-items:center;background:#0C130E;padding:10px 14px;
-                border-bottom:1px solid var(--linje-mork)}
-  .jamfor .balk i{width:10px;height:10px;border-radius:50%;background:#2A3830;display:block}
-  .jamfor .balk .adressfalt{margin-left:10px;flex:1;background:#16211A;border-radius:5px;color:#5F6E63;
-                font-family:"IBM Plex Mono",monospace;font-size:.72rem;padding:4px 10px;white-space:nowrap;overflow:hidden}
-  .duk{position:relative;height:340px}
-  @media(max-width:720px){ .duk{height:300px} }
+  .jamfor-scen{min-width:0}
+  .jamfor{position:relative;border-radius:14px;overflow:hidden;border:1px solid var(--linje-mork);
+          box-shadow:0 34px 80px -18px rgba(0,0,0,.55);background:#fff;--pos:50%}
+  .jamfor .balk{display:flex;gap:6px;align-items:center;background:#0A1810;padding:11px 14px}
+  .jamfor .balk i{width:10px;height:10px;border-radius:50%;background:#24402F;display:block}
+  .jamfor .balk .adressfalt{margin-left:10px;flex:1;background:#122A1C;border-radius:6px;color:#7FA38E;
+                font-size:.78rem;padding:4px 12px;white-space:nowrap;overflow:hidden;letter-spacing:.02em}
+  .duk{position:relative;height:360px;overflow:hidden}
+  @media(max-width:720px){ .duk{height:320px} .efter .eknapp{display:none} }
   .mock{position:absolute;inset:0;overflow:hidden}
 
-  /* gammal sida (under) */
-  .mock.fore{background:#E8E6E0;font-family:"Times New Roman",Times,serif;color:#222}
+  /* gammal sida (ÖVER, klipps) — medvetet tidstypisk. Reveal är transform-
+     only och sker på DETTA lager (ren CSS): fotolagret under får ALDRIG
+     animeras — varje förflyttning av fototexturen (clip-path, layout eller
+     transform) hängde Chrome-rastern på den här maskinen (bisektion
+     2026-07-08). Ändra inte lagerordningen utan omtest! */
+  .mock.fore{z-index:2;transform:translateX(calc(var(--pos) - 100%))}
+  .fore .finner{position:absolute;inset:0;transform:translateX(calc(100% - var(--pos)));
+              background:#E8E6E0;font-family:"Times New Roman",Times,serif;color:#222}
   .fore .topp{background:linear-gradient(#7A96B8,#4A6890);color:#fff;padding:14px 18px;
-              font-size:1.15rem;font-weight:700;text-shadow:1px 1px 0 #33475F}
+              font-size:1.12rem;font-weight:700;text-shadow:1px 1px 0 #33475F}
   .fore .meny{background:#C9C5B8;padding:6px 18px;font-size:.8rem}
   .fore .meny span{color:#26456E;text-decoration:underline;margin-right:14px}
   .fore .inre{padding:18px;font-size:.92rem;line-height:1.5}
-  .fore .inre .valkommen{color:#B03030;font-weight:700;font-size:1.05rem;margin-bottom:10px}
+  .fore .inre .valkommen{color:#B03030;font-weight:700;font-size:1.02rem;margin-bottom:10px}
   .fore .bildruta{float:right;width:34%;aspect-ratio:4/3;background:repeating-linear-gradient(45deg,#B9B4A4,#B9B4A4 8px,#A8A392 8px,#A8A392 16px);
-                  border:2px inset #999;margin:0 0 10px 12px;display:grid;place-items:center;color:#6E6A5E;font-size:.7rem}
-  .fore .raknare{clear:both;margin-top:14px;font-size:.72rem;color:#666;border-top:1px dashed #999;padding-top:8px}
+                  border:2px inset #999;margin:0 0 10px 12px;display:grid;place-items:center;color:#6E6A5E;font-size:.7rem;font-family:Arial,sans-serif}
+  .fore .raknare{clear:both;margin-top:14px;font-size:.74rem;color:#666;border-top:1px dashed #999;padding-top:8px}
   .fore .uppdaterad{color:#888;font-style:italic}
 
-  /* ny sida (över, klipps) */
-  .mock.efter{background:var(--papper);color:var(--kol);font-family:"Public Sans",sans-serif;
-              clip-path:inset(0 0 0 var(--pos))}
-  .efter .topp{background:var(--gran);color:var(--skum);display:flex;justify-content:space-between;
-               align-items:center;padding:14px 18px}
-  .efter .topp .namn{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;letter-spacing:-.01em}
-  .efter .topp .ring{background:var(--massing);color:#14110A;border-radius:5px;padding:6px 12px;
-               font-weight:700;font-size:.8rem}
-  .efter .inre{padding:22px 18px}
-  .efter .inre h4{font-family:"Bricolage Grotesque",sans-serif;font-size:clamp(1.1rem,2.6vw,1.6rem);
-               letter-spacing:-.015em;max-width:22ch}
-  .efter .stjarnor{display:inline-flex;align-items:center;gap:8px;margin:12px 0;
-               font-family:"IBM Plex Mono",monospace;font-size:.75rem;color:var(--dis)}
-  .efter .stjarnor b{color:var(--massing);letter-spacing:2px;font-weight:500}
-  .efter .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-  .efter .chips span{border:1px solid var(--linje-ljus);background:#fff;border-radius:99px;
-               padding:5px 12px;font-size:.75rem;font-weight:600}
-  .efter .kvitto{margin-top:16px;font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--signal)}
+  /* ny sida (UNDER, helt statisk) — OBS: INGET rasterfoto här. Alla varianter
+     med foto under/i rörliga lager (clip-path, layout, transform, native
+     range) hängde Chrome-rendern på den här maskinen — reproducerat och
+     bisekterat 2026-07-08. CSS-komponerad modern sajt i stället;
+     "målad sjok"-motivet bär måleri-känslan. Lägg inte in <img>/bakgrunds-
+     foto i mocken utan omfattande omtest! */
+  .mock.efter{z-index:1}
+  .efter .inner{position:absolute;inset:0;
+              background:#FBFBF9;color:#1A211C;font-family:"Karla",system-ui,sans-serif;
+              display:flex;flex-direction:column}
+  .efter .topp{background:#10241A;color:#EDF3EE;display:flex;justify-content:space-between;
+               align-items:center;padding:12px 18px;flex:none}
+  .efter .topp .namn{font-family:"Bitter",Georgia,serif;font-weight:700;font-size:1.02rem}
+  .efter .topp .ring{background:#2FA878;color:#06140D;border-radius:6px;padding:6px 13px;
+               font-weight:700;font-size:.8rem;white-space:nowrap}
+  .efter .ehero{position:relative;flex:1;min-height:0;overflow:hidden}
+  /* målad sjok — en roller-dragning från vänster, bakom texten */
+  .efter .sjok{position:absolute;top:22px;left:-12px;width:58%;height:56px;
+               background:#DCEBE2;transform:rotate(-2.2deg);border-radius:3px}
+  .efter .sjok::after{content:"";position:absolute;right:-7px;top:6px;bottom:6px;width:14px;
+               border-radius:3px;background:#CFE3D7}
+  /* högerankrat innehåll: höger halva är alltid en hel komposition,
+     så inget klipps mitt i ord när reglaget vilar på 50 % */
+  .efter .etext{position:absolute;top:16px;right:12px;bottom:46px;width:min(45%,26ch);
+               display:flex;flex-direction:column;align-items:flex-start}
+  .efter h4{font-family:"Bitter",Georgia,serif;font-size:clamp(.95rem,2vw,1.28rem);
+               font-weight:700;letter-spacing:-.01em;line-height:1.22;
+               text-wrap:balance;color:#14211A}
+  .efter .stjarnor{display:inline-flex;align-items:center;gap:.5rem;margin-top:.7rem;
+               font-size:.8rem;font-weight:700;color:#B8860B}
+  .efter .stjarnor span{color:#41544A;font-weight:500}
+  .efter .chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:.8rem}
+  .efter .chips span{border:1px solid #D7E2DA;background:#fff;border-radius:99px;
+               padding:4px 11px;font-size:.72rem;font-weight:700;color:#22392D}
+  .efter .eknapp{display:inline-block;margin-top:.9rem;background:#15694A;color:#fff;
+               font-weight:700;font-size:.8rem;padding:8px 14px;border-radius:7px}
+  .efter .rand{flex:none;display:flex;gap:1.1rem;justify-content:center;padding:9px 68px 9px 12px;
+               background:#EFF5F0;font-size:.74rem;font-weight:700;color:#2E5B43;white-space:nowrap;overflow:hidden}
 
-  /* handtag + reglage */
-  .handtag{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;background:var(--massing-ljus);
-           pointer-events:none}
+  /* handtag + reglage. OBS: INGEN <input type=range> här — native
+     form-kontroll ovanpå fotot hängde Chrome-rastern på den här maskinen
+     (bisektion 2026-07-08). Egen pointer-slider med ARIA i stället. */
+  /* user-select/draggable av: markering eller bilddrag över fotot
+     triggade samma raster-häng som ovan */
+  .duk{cursor:ew-resize;touch-action:pan-y;user-select:none;-webkit-user-select:none}
+  .spar{position:absolute;inset:0;pointer-events:none;transform:translateX(var(--pos));z-index:3}
+  .handtag{position:absolute;top:0;bottom:0;left:-1px;width:2px;background:#3FBE8D;pointer-events:auto}
   .handtag::after{content:"◂ ▸";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-           background:var(--massing-ljus);color:#14110A;font-size:.72rem;font-weight:700;
-           padding:9px 10px;border-radius:99px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.4)}
-  .jamfor input[type=range]{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;margin:0}
-  .etiketter{position:absolute;top:56px;left:0;right:0;display:flex;justify-content:space-between;
-           padding:10px 14px;pointer-events:none}
-  .etiketter span{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.18em;
-           padding:4px 10px;border-radius:4px}
-  .etiketter .fore-et{background:rgba(34,34,34,.75);color:#EDEAE0}
-  .etiketter .efter-et{background:rgba(16,25,19,.8);color:var(--massing-ljus)}
-  .jamfor-not{font-family:"IBM Plex Mono",monospace;font-size:.75rem;color:var(--skum-dis);
-           margin-top:14px;text-align:center}
-  @media(min-width:960px){
-    .hero .wrap{grid-template-columns:1fr 1fr;align-items:center}
-    .hero h1{font-size:clamp(2.3rem,3.6vw,3.3rem)}
-  }
+           background:#3FBE8D;color:#06140D;font-size:.74rem;font-weight:700;
+           padding:9px 11px;border-radius:99px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.4)}
+  .handtag:focus-visible{outline:3px solid #fff;outline-offset:2px}
+  .etiketter{position:absolute;bottom:12px;left:0;right:0;display:flex;justify-content:space-between;
+           padding:0 14px;pointer-events:none;z-index:4}
+  .etiketter span{font-size:.72rem;font-weight:700;letter-spacing:.06em;padding:4px 11px;border-radius:99px}
+  .etiketter .fore-et{background:rgba(30,28,22,.78);color:#EDEAE0}
+  .etiketter .efter-et{background:rgba(10,26,17,.82);color:#5ED9A8}
+  .jamfor-not{font-size:.84rem;color:var(--skum-dis);margin-top:.9rem;text-align:center}
 
-  /* ---------- paket ---------- */
-  .paket{padding:88px 0}
-  .paket h2, .steg-sek h2, .princip h2, .koll h2, .kontakt h2{
-    font-size:clamp(1.8rem,3.6vw,2.5rem);font-weight:730;margin-bottom:10px}
-  .under{color:var(--dis);max-width:60ch;margin-bottom:44px}
-  .kort-rad{display:grid;grid-template-columns:1fr;gap:20px}
+  /* ---------- sektioner ---------- */
+  .sektion{padding:clamp(3.6rem,7vw,5.6rem) 0}
+  .sektion h2{font-size:clamp(1.65rem,3.2vw,2.35rem);font-weight:700;margin-bottom:.6rem}
+  .under{color:var(--dis);max-width:58ch;margin-bottom:clamp(2rem,4vw,2.8rem);font-size:1.02rem}
+
+  /* paket */
+  .kort-rad{display:grid;grid-template-columns:1fr;gap:1.25rem}
   @media(min-width:880px){ .kort-rad{grid-template-columns:1fr 1fr 1fr} }
-  .kort{background:#fff;border:1px solid var(--linje-ljus);border-radius:12px;padding:30px 26px 26px;
-        display:flex;flex-direction:column;position:relative;
+  .kort{background:var(--yta);border:1px solid var(--linje);border-radius:14px;padding:1.9rem 1.6rem 1.6rem;
+        display:flex;flex-direction:column;position:relative;box-shadow:var(--skugga);
         transition:transform .2s ease,box-shadow .2s ease}
-  .kort:hover{transform:translateY(-4px);box-shadow:0 18px 44px rgba(33,31,26,.12)}
-  .kort .namn{font-family:"IBM Plex Mono",monospace;font-size:.75rem;letter-spacing:.24em;
-        text-transform:uppercase;color:var(--dis)}
-  .kort .pris{font-family:"Bricolage Grotesque",sans-serif;font-size:2.1rem;font-weight:750;
-        letter-spacing:-.02em;margin:10px 0 2px}
-  .kort .pris small{font-size:.95rem;font-weight:600;color:var(--dis);letter-spacing:0}
-  .kort ul{list-style:none;margin:18px 0 22px;flex:1}
-  .kort li{padding:8px 0 8px 26px;position:relative;font-size:.94rem;border-top:1px solid #F0EDE4}
+  .kort:hover{transform:translateY(-4px)}
+  .kort .namn{font-family:"Bitter",Georgia,serif;font-weight:600;font-size:1.05rem;color:var(--dis)}
+  .kort .pris{font-family:"Bitter",Georgia,serif;font-size:2.15rem;font-weight:700;
+        letter-spacing:-.02em;margin:.5rem 0 .1rem;font-variant-numeric:tabular-nums}
+  .kort .pris small{font-family:"Karla",system-ui,sans-serif;font-size:.92rem;font-weight:500;color:var(--dis);letter-spacing:0}
+  .kort ul{list-style:none;margin:1.15rem 0 1.4rem;flex:1}
+  .kort li{padding:.55rem 0 .55rem 1.7rem;position:relative;font-size:.95rem;border-top:1px solid var(--linje)}
   .kort li:first-child{border-top:0}
-  .kort li::before{content:"";position:absolute;left:2px;top:14px;width:12px;height:7px;
-        border-left:2.5px solid var(--massing);border-bottom:2.5px solid var(--massing);
-        transform:rotate(-45deg)}
-  .kort .valj{display:block;text-align:center;text-decoration:none;font-weight:700;font-size:.95rem;
-        border:2px solid var(--gran);color:var(--gran);border-radius:6px;padding:11px}
-  .kort .valj:hover{background:var(--gran);color:var(--skum)}
-  .kort.vald{background:var(--gran);color:var(--skum);border-color:var(--gran)}
-  .kort.vald .namn{color:var(--massing-ljus)}
+  .kort li::before{content:"";position:absolute;left:2px;top:1.05rem;width:12px;height:7px;
+        border-left:2.5px solid var(--gron);border-bottom:2.5px solid var(--gron);transform:rotate(-45deg)}
+  .kort .valj{display:block;text-align:center;text-decoration:none;font-weight:700;font-size:.98rem;
+        border:2px solid var(--gron);color:var(--gron);border-radius:9px;padding:.75rem;cursor:pointer;
+        background:transparent;font-family:"Karla",system-ui,sans-serif;width:100%}
+  .kort .valj:hover{background:var(--gron);color:#fff}
+  .kort.vald{background:var(--gron-djup);color:var(--skum);border-color:var(--linje-mork)}
+  .kort.vald .namn{color:var(--gron-ljus)}
   .kort.vald li{border-top-color:var(--linje-mork)}
+  .kort.vald li::before{border-color:var(--gron-ljus)}
   .kort.vald .pris small{color:var(--skum-dis)}
-  .kort.vald .valj{background:var(--massing);border-color:var(--massing);color:#14110A}
-  .kort.vald .valj:hover{background:var(--massing-ljus);border-color:var(--massing-ljus)}
-  .band{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--massing);
-        color:#14110A;font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.18em;
-        padding:5px 14px;border-radius:99px;font-weight:500;white-space:nowrap}
-  .garanti{margin-top:30px;text-align:center;color:var(--dis);font-size:.92rem}
-  .garanti b{color:var(--kol)}
+  .kort.vald .valj{background:var(--gron-ljus);border-color:var(--gron-ljus);color:#07150E}
+  .kort.vald .valj:hover{filter:brightness(1.07);background:var(--gron-ljus);color:#07150E}
+  .band{position:absolute;top:-13px;left:50%;transform:translateX(-50%);background:var(--gron-ljus);
+        color:#07150E;font-size:.76rem;font-weight:700;padding:.3rem .9rem;border-radius:99px;white-space:nowrap}
+  .garanti{margin-top:1.9rem;text-align:center;color:var(--dis);font-size:.94rem}
+  .garanti b{color:var(--blaeck)}
 
-  /* ---------- process ---------- */
-  .steg-sek{background:var(--gran);color:var(--skum);padding:88px 0}
+  /* process — äkta sekvens, därför siffror */
+  .steg-sek{background:var(--gron-djup);color:var(--skum)}
   .steg-sek .under{color:var(--skum-dis)}
-  .steg{display:grid;grid-template-columns:1fr;gap:18px;counter-reset:steg}
+  .steg{display:grid;grid-template-columns:1fr;gap:1.15rem;counter-reset:steg}
   @media(min-width:880px){ .steg{grid-template-columns:1fr 1fr 1fr} }
-  .steg article{background:var(--gran-ljus);border:1px solid var(--linje-mork);border-radius:12px;
-        padding:26px;counter-increment:steg}
-  .steg h3{font-size:1.15rem;margin:14px 0 8px}
-  .steg article::before{content:counter(steg,decimal-leading-zero);font-family:"IBM Plex Mono",monospace;
-        color:var(--massing-ljus);font-size:.8rem;letter-spacing:.2em}
-  .steg p{color:var(--skum-dis);font-size:.94rem}
-  .steg b{color:var(--skum);font-weight:600}
+  .steg article{background:var(--gron-natt);border:1px solid var(--linje-mork);border-radius:14px;
+        padding:1.6rem;counter-increment:steg}
+  .steg article::before{content:counter(steg) ".";font-family:"Bitter",Georgia,serif;
+        color:var(--gron-ljus);font-size:1.7rem;font-weight:700;line-height:1;display:block}
+  .steg h3{font-size:1.14rem;margin:.8rem 0 .5rem;font-weight:600;letter-spacing:0}
+  .steg p{color:var(--skum-dis);font-size:.95rem}
+  .steg b{color:var(--skum);font-weight:700}
 
-  /* ---------- principer ---------- */
-  .princip{padding:88px 0}
-  .princip-rad{display:grid;grid-template-columns:1fr;gap:26px;max-width:900px}
+  /* löften */
+  .princip-rad{display:grid;grid-template-columns:1fr;gap:1.7rem;max-width:940px}
   @media(min-width:820px){ .princip-rad{grid-template-columns:1fr 1fr 1fr} }
-  .princip-rad p{font-size:.95rem;color:var(--dis);border-top:2px solid var(--massing);padding-top:14px}
-  .princip-rad b{display:block;color:var(--kol);font-weight:700;margin-bottom:6px;font-size:1rem}
+  .princip-rad p{font-size:.96rem;color:var(--dis);border-top:1px solid var(--linje);padding-top:1rem}
+  .princip-rad b{display:block;color:var(--blaeck);font-weight:700;margin-bottom:.4rem;font-size:1.02rem;
+        font-family:"Bitter",Georgia,serif;letter-spacing:0}
 
-  /* ---------- synlighetskoll-krok ---------- */
-  .koll{background:#ECE9DF;padding:64px 0;border-top:1px solid var(--linje-ljus);border-bottom:1px solid var(--linje-ljus)}
-  .koll .wrap{display:grid;grid-template-columns:1fr;gap:34px;align-items:center}
+  /* synlighetskoll */
+  .koll{background:color-mix(in srgb, var(--gron) 7%, var(--bg))}
+  .koll .wrap{display:grid;grid-template-columns:1fr;gap:2.1rem;align-items:center}
   @media(min-width:900px){ .koll .wrap{grid-template-columns:1.1fr .9fr} }
-  .koll h2{font-size:clamp(1.5rem,3vw,2rem)}
+  .koll h2{font-size:clamp(1.45rem,2.8vw,1.95rem)}
   .koll p{color:var(--dis);max-width:52ch}
-  .koll .mini{background:var(--gran);border-radius:10px;padding:18px 20px;font-family:"IBM Plex Mono",monospace;
-        font-size:.8rem;color:var(--skum-dis);box-shadow:0 16px 40px rgba(33,31,26,.18)}
-  .koll .mini .rub{display:flex;justify-content:space-between;color:var(--massing-ljus);
-        letter-spacing:.14em;font-size:.68rem;margin-bottom:12px}
-  .koll .mini .rad{display:flex;justify-content:space-between;padding:8px 0;border-top:1px solid var(--linje-mork)}
-  .koll .mini .ok{color:var(--signal)}
-  .koll .mini .miss{color:#D97A62}
-  .koll .mini .not{margin-top:10px;font-size:.68rem;line-height:1.5}
+  .avlasning{background:var(--yta);border:1px solid var(--linje);border-radius:14px;padding:1.4rem 1.5rem;
+        box-shadow:var(--skugga);font-size:.92rem;font-variant-numeric:tabular-nums}
+  .avlasning .rub{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;
+        font-family:"Bitter",Georgia,serif;font-weight:600;margin-bottom:.7rem}
+  .avlasning .rub span:last-child{font-family:"Karla",system-ui,sans-serif;font-weight:500;
+        color:var(--dis);font-size:.82rem}
+  .avlasning .rad{display:flex;justify-content:space-between;gap:1rem;padding:.6rem 0;border-top:1px dashed var(--linje)}
+  .avlasning .ok{color:var(--gron);font-weight:700;white-space:nowrap}
+  .avlasning .miss{color:var(--varm);font-weight:700;white-space:nowrap}
+  .avlasning .not{margin-top:.8rem;font-size:.82rem;color:var(--dis);line-height:1.55}
 
-  /* ---------- kontakt ---------- */
-  .kontakt{padding:88px 0 96px}
-  .kontakt-kort{background:var(--gran);color:var(--skum);border-radius:14px;padding:44px 36px;
-        max-width:640px;box-shadow:0 24px 60px rgba(33,31,26,.22)}
-  .kontakt-kort .etikett{font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.24em;
-        color:var(--massing-ljus);text-transform:uppercase;margin-bottom:12px}
-  .adress-rad{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
-  .adress{font-family:"IBM Plex Mono",monospace;font-size:1.02rem;color:var(--skum);word-break:break-all}
-  .kopiera{background:var(--massing);border:0;color:#14110A;font-weight:700;font-size:.85rem;
-        border-radius:5px;padding:9px 16px;cursor:pointer;font-family:"Public Sans",sans-serif}
-  .kopiera:hover{background:var(--massing-ljus)}
-  .kontakt-kort p{color:var(--skum-dis);font-size:.95rem}
+  /* ---------- kontakt + formulär ---------- */
+  .kontakt-rad{display:grid;grid-template-columns:1fr;gap:1.5rem;align-items:start}
+  @media(min-width:940px){ .kontakt-rad{grid-template-columns:1.15fr .85fr} }
+  .form-kort{background:var(--yta);border:1px solid var(--linje);border-radius:16px;
+        padding:clamp(1.5rem,3.5vw,2.2rem);box-shadow:var(--skugga)}
+  .falt-rad{display:grid;grid-template-columns:1fr;gap:1rem}
+  @media(min-width:640px){ .falt-rad{grid-template-columns:1fr 1fr} }
+  .falt{display:block;margin-bottom:1rem}
+  .falt span{display:block;font-weight:700;font-size:.9rem;margin-bottom:.35rem}
+  .falt span i{font-style:normal;font-weight:500;color:var(--dis)}
+  .falt input,.falt select,.falt textarea{
+        width:100%;font:inherit;font-size:1rem;color:var(--blaeck);
+        background:var(--bg);border:1.5px solid var(--linje);border-radius:8px;padding:.65rem .8rem}
+  .falt input::placeholder,.falt textarea::placeholder{color:var(--dis);opacity:1}
+  .falt input:focus-visible,.falt select:focus-visible,.falt textarea:focus-visible{
+        outline:3px solid var(--gron-ljus);outline-offset:1px;border-color:var(--gron)}
+  .falt textarea{resize:vertical;min-height:96px}
+  .form-kort .cta{background:var(--gron);color:#fff;width:100%;margin-top:.3rem}
+  .form-kort .cta[disabled]{opacity:.65;cursor:wait;transform:none}
+  .form-not{color:var(--dis);font-size:.88rem;margin-top:.8rem;text-align:center}
+  .status{margin-top:1rem;border-radius:10px;padding:1rem 1.1rem;font-size:.95rem;display:none}
+  .status.syns{display:block}
+  .status.lyckat{background:color-mix(in srgb, var(--gron) 12%, var(--yta));border:1px solid var(--gron);color:var(--blaeck)}
+  .status.fel{background:color-mix(in srgb, var(--varm) 10%, var(--yta));border:1px solid var(--varm);color:var(--blaeck)}
+  .fallback{margin-top:.8rem}
+  .fallback textarea{width:100%;font:inherit;font-size:.9rem;color:var(--blaeck);background:var(--bg);
+        border:1.5px solid var(--linje);border-radius:8px;padding:.7rem;min-height:130px}
+  .knapp-rad{display:flex;gap:.7rem;flex-wrap:wrap;margin-top:.6rem}
+  .knapp{background:transparent;border:2px solid var(--gron);color:var(--gron);font-weight:700;
+        font-size:.9rem;padding:.5rem 1rem;border-radius:8px;cursor:pointer;font-family:"Karla",system-ui,sans-serif}
+  .knapp:hover{background:var(--gron);color:#fff}
 
-  footer{background:var(--gran);border-top:1px solid var(--linje-mork);color:var(--skum-dis);
-        font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.08em;padding:26px 0}
+  .mejl-kort{background:var(--gron-djup);color:var(--skum);border-radius:16px;
+        padding:clamp(1.5rem,3.5vw,2rem);box-shadow:var(--skugga)}
+  .mejl-kort h3{font-size:1.15rem;font-weight:600;margin-bottom:.7rem;letter-spacing:0}
+  .mejl-kort p{color:var(--skum-dis);font-size:.94rem;margin-top:.8rem}
+  .adress-rad{display:flex;gap:.7rem;flex-wrap:wrap;align-items:center}
+  .adress{font-weight:700;font-size:1.02rem;color:var(--skum);word-break:break-all;user-select:all}
+  .kopiera{background:var(--gron-ljus);border:0;color:#07150E;font-weight:700;font-size:.88rem;
+        border-radius:7px;padding:.55rem 1rem;cursor:pointer;font-family:"Karla",system-ui,sans-serif}
+  .kopiera:hover{filter:brightness(1.07)}
+
+  footer{border-top:1px solid var(--linje);color:var(--dis);font-size:.86rem;padding:1.7rem 0 2.4rem}
+  footer .wrap{display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+  footer a{color:var(--dis)}
 
   /* ---------- reveals ---------- */
-  .rev{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease}
+  .rev{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s cubic-bezier(.22,.9,.36,1)}
   .rev.syns{opacity:1;transform:none}
   @media (prefers-reduced-motion: reduce){
     .rev{opacity:1;transform:none;transition:none}
-    .cta,.kort{transition:none}
+    .cta,.kort,.kort:hover{transition:none;transform:none}
   }
 </style>
 </head>
@@ -233,8 +303,11 @@
 
 <header>
   <div class="wrap">
-    <a class="logo" href="#top">SIGNAL<b>BRIEF</b></a>
-    <nav>
+    <a class="logo" href="#top" aria-label="Signal Brief — till sidans början">
+      <svg width="22" height="22" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7" fill="#15694A"/><path d="M9 17.5l5 5 9-11.5" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      Signal Brief
+    </a>
+    <nav aria-label="Sidnavigering">
       <a href="#paket">Paket &amp; priser</a>
       <a href="#process">Så går det till</a>
       <a href="#koll">Gratis synlighetskoll</a>
@@ -243,23 +316,24 @@
   </div>
 </header>
 
-<div class="hero" id="top">
+<main id="top">
+
+<div class="hero">
   <div class="wrap">
     <div>
-      <p class="brod">Hemsidor för lokala företag · fast pris</p>
       <h1>Ni är bäst på jobbet. <em>Er hemsida ska visa det.</em></h1>
       <p class="ingress">Många av de bästa lokala företagen förlorar kunder till
-      sämre konkurrenter — för att hemsidan är tio år gammal, eller inte finns.
+      sämre konkurrenter, för att hemsidan är tio år gammal eller inte finns.
       Vi bygger sidan som rättar till det. Fast pris, klar inom en vecka, och
       ni äger allting själva.</p>
       <div class="cta-rad">
         <a class="cta" href="#kontakt">Få ett kostnadsfritt förslag</a>
-        <span class="cta-not">Konkret förslag med fast pris — innan ni bestämmer något.</span>
+        <span class="cta-not">Konkret förslag med fast pris, innan ni bestämmer något.</span>
       </div>
       <div class="villkor">
-        <span><b>Från 6 900 kr</b> · fast pris</span>
+        <span><b>Från 6 900 kr</b> fast pris</span>
         <span><b>Klar inom en vecka</b></span>
-        <span><b>0 kr/månad</b> · ni äger allt</span>
+        <span><b>0 kr/månad</b> — ni äger allt</span>
       </div>
     </div>
 
@@ -270,6 +344,7 @@
         </div>
         <div class="duk">
           <div class="mock fore" aria-hidden="true">
+            <div class="finner">
             <div class="topp">Välkommen till Bergmans Måleri AB:s hemsida!</div>
             <div class="meny"><span>Startsida</span><span>Om oss</span><span>Galleri</span><span>Gästbok</span></div>
             <div class="inre">
@@ -280,25 +355,34 @@
               på länkarna i menyn för mer information om oss och vår verksamhet.</p>
               <p class="raknare">Du är besökare nr 08412 · <span class="uppdaterad">Sidan uppdaterades senast 2014-03-11</span></p>
             </div>
+            </div>
           </div>
           <div class="mock efter" aria-hidden="true">
+            <div class="inner">
             <div class="topp">
               <span class="namn">Bergmans Måleri</span>
               <span class="ring">Ring 08-123 456 78</span>
             </div>
-            <div class="inre">
-              <h4>Måleri i Täby med 30 års hantverk bakom penseln.</h4>
-              <div class="stjarnor"><b>★★★★★</b> 4,8 på Google · 64 omdömen</div>
-              <div class="chips"><span>Invändigt</span><span>Fasad</span><span>Tapetsering</span><span>Fast offert inom 48 h</span></div>
-              <div class="kvitto">✓ Svarar samma dag &nbsp; ✓ ROT-avdrag</div>
+            <div class="ehero">
+              <div class="sjok" aria-hidden="true"></div>
+              <div class="etext">
+                <h4>Måleri i Täby med 30 års hantverk bakom penseln</h4>
+                <span class="stjarnor">★★★★★ <span>4,8 på Google · 64 omdömen</span></span>
+                <div class="chips"><span>Invändigt</span><span>Fasad</span><span>ROT-avdrag</span></div>
+                <span class="eknapp">Få fast offert inom 48 h</span>
+              </div>
+            </div>
+            <div class="rand"><span>✓ Fast offert inom 48 h</span><span>✓ ROT-avdrag</span><span>✓ Svarar samma dag</span></div>
             </div>
           </div>
           <div class="etiketter" aria-hidden="true">
             <span class="fore-et">FÖRE</span><span class="efter-et">EFTER</span>
           </div>
-          <div class="handtag" aria-hidden="true"></div>
-          <input type="range" id="reglage" min="0" max="100" value="50" step="1"
-                 aria-label="Jämför före och efter — dra för att växla mellan gammal och ny hemsida">
+          <div class="spar">
+            <div class="handtag" id="handtag" role="slider" tabindex="0"
+                 aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"
+                 aria-label="Jämför före och efter. Dra, eller använd piltangenterna, för att växla mellan gammal och ny hemsida"></div>
+          </div>
         </div>
       </div>
       <p class="jamfor-not">Dra i reglaget — samma företag, ny sida. (Påhittat exempelföretag.)</p>
@@ -306,10 +390,10 @@
   </div>
 </div>
 
-<section id="paket" class="paket">
+<section id="paket" class="sektion">
   <div class="wrap">
     <h2>Tre paket. Ett pris. Inga abonnemang.</h2>
-    <p class="under">Alla paket är fasta priser med definierat innehåll — ni vet
+    <p class="under">Alla paket är fasta priser med definierat innehåll: ni vet
     vad det kostar och vad ni får innan vi börjar. Domän, innehåll och sida är
     era, för alltid.</p>
     <div class="kort-rad">
@@ -317,24 +401,24 @@
         <span class="namn">Bas</span>
         <div class="pris">6 900 kr <small>fast</small></div>
         <ul>
-          <li>Komplett ensidig hemsida — allt kunden behöver för att välja er</li>
-          <li>Vad ni gör, var ni finns, hur man når er — klickbart nummer</li>
+          <li>Komplett ensidig hemsida med allt kunden behöver för att välja er</li>
+          <li>Vad ni gör, var ni finns, hur man når er, med klickbart nummer</li>
           <li>Mobilanpassad och säker (https), på er egen domän</li>
           <li>Klar inom en vecka</li>
         </ul>
-        <a class="valj" href="#kontakt">Välj Bas</a>
+        <button class="valj" type="button" data-paket="Bas">Välj Bas</button>
       </div>
       <div class="kort vald rev">
-        <span class="band">DE FLESTA VÄLJER DENNA</span>
+        <span class="band">Flest väljer denna</span>
         <span class="namn">Komplett</span>
         <div class="pris">12 900 kr <small>fast</small></div>
         <ul>
           <li>Upp till fem sidor: tjänster, referensjobb, om er, kontakt</li>
-          <li>Text och struktur skriven för att ge förfrågningar — inte bara "finnas"</li>
+          <li>Text och struktur skriven för att ge förfrågningar, inte bara "finnas"</li>
           <li>En revisionsrunda ingår</li>
-          <li>Mobilanpassad, säker, er domän — klar inom en vecka</li>
+          <li>Mobilanpassad, säker, er domän. Klar inom en vecka</li>
         </ul>
-        <a class="valj" href="#kontakt">Välj Komplett</a>
+        <button class="valj" type="button" data-paket="Komplett">Välj Komplett</button>
       </div>
       <div class="kort rev">
         <span class="namn">Synlig</span>
@@ -345,23 +429,23 @@
           <li>Synlighetskoll före och efter — ni får rapporten med källor</li>
           <li>30 dagars justeringsfönster efter leverans</li>
         </ul>
-        <a class="valj" href="#kontakt">Välj Synlig</a>
+        <button class="valj" type="button" data-paket="Synlig">Välj Synlig</button>
       </div>
     </div>
-    <p class="garanti">Osäker på vilket paket? <b>Mejla oss</b> — förslaget ni
+    <p class="garanti">Osäker på vilket paket? <b>Skriv "vet inte än" i formuläret.</b> Förslaget ni
     får är kostnadsfritt och anger paketet vi ärligt tror räcker, inte det dyraste.</p>
   </div>
 </section>
 
-<section id="process" class="steg-sek">
+<section id="process" class="sektion steg-sek">
   <div class="wrap">
     <h2>Så går det till</h2>
-    <p class="under">Från första mejl till färdig sida — utan att ni behöver
+    <p class="under">Från första mejl till färdig sida, utan att ni behöver
     kunna något om webb.</p>
     <div class="steg">
       <article class="rev">
         <h3>Berätta om företaget</h3>
-        <p>Mejla företagsnamnet och några rader om vad ni gör. Inom
+        <p>Skriv företagsnamnet och några rader om vad ni gör. Inom
         <b>två arbetsdagar</b> får ni ett konkret förslag med fast pris.
         Ingen förskottsbetalning.</p>
       </article>
@@ -373,85 +457,155 @@
       <article class="rev">
         <h3>Ni äger allt</h3>
         <p>Er domän, ert innehåll, era besökare. <b>Inga månadskostnader,
-        inga abonnemang</b> — sidan är er på samma sätt som era verktyg.</p>
+        inga abonnemang.</b> Sidan är er på samma sätt som era verktyg.</p>
       </article>
     </div>
   </div>
 </section>
 
-<section id="princip" class="princip">
+<section id="princip" class="sektion">
   <div class="wrap">
     <h2>Tre löften</h2>
     <div class="princip-rad">
-      <p><b>Inga påståenden utan källa.</b> Levererar vi en uppgift — ett
-      betyg, ett synlighetsgap — har den källa och datum, och ni kan
+      <p><b>Inga påståenden utan källa.</b> Levererar vi en uppgift (ett
+      betyg, ett synlighetsgap) har den källa och datum, och ni kan
       kontrollera den själva.</p>
       <p><b>Fast pris, definierat slut.</b> Ni vet vad det kostar och vad som
       ingår innan vi börjar. Inga abonnemang som tickar i bakgrunden.</p>
       <p><b>Nystartade, och transparenta med det.</b> Vi har inga hundra
-      kundlogotyper att visa — därför är förslaget gratis, så att arbetet
+      kundlogotyper att visa. Därför är förslaget gratis, så att arbetet
       får tala.</p>
     </div>
   </div>
 </section>
 
-<section id="koll" class="koll">
+<section id="koll" class="sektion koll">
   <div class="wrap">
     <div>
       <h2>Vill ni se läget först? Börja med en gratis synlighetskoll.</h2>
-      <p>Vi kollar vad kunder faktiskt ser när de söker efter er — på Google,
-      i kartan och hos AI-assistenter — och skickar avläsningen med källa och
+      <p>Vi kollar vad kunder faktiskt ser när de söker efter er: på Google,
+      i kartan och hos AI-assistenter. Avläsningen får ni med källa och
       datum på varje rad. Gratis och utan förpliktelse, oavsett om ni går
       vidare med en hemsida eller inte.</p>
     </div>
-    <div class="mini rev" aria-label="Exempel på synlighetskoll">
-      <div class="rub"><span>● SYNLIGHETSKOLL</span><span>byggfirma · Sthlms län</span></div>
-      <div class="rad"><span>Googlar man företagsnamnet</span><span class="ok">SYNS ✓</span></div>
-      <div class="rad"><span>Söker man "byggfirma [ort]"</span><span class="miss">SAKNAS —</span></div>
-      <div class="rad"><span>Frågar man en AI om tips</span><span class="miss">SAKNAS —</span></div>
-      <div class="not">Verklig, anonymiserad avläsning. Er gör vi gratis —
+    <div class="avlasning rev" aria-label="Exempel på synlighetskoll">
+      <div class="rub"><span>Synlighetskoll</span><span>byggfirma · Sthlms län</span></div>
+      <div class="rad"><span>Googlar man företagsnamnet</span><span class="ok">Syns ✓</span></div>
+      <div class="rad"><span>Söker man "byggfirma + ort"</span><span class="miss">Saknas —</span></div>
+      <div class="rad"><span>Frågar man en AI om tips</span><span class="miss">Saknas —</span></div>
+      <div class="not">Verklig, anonymiserad avläsning. Er gör vi gratis,
       med källa och datum på varje rad.</div>
     </div>
   </div>
 </section>
 
-<section id="kontakt" class="kontakt">
+<section id="kontakt" class="sektion">
   <div class="wrap">
-    <h2>Kontakt</h2>
-    <p class="under">Ett mejl räcker — skriv vilket företag det gäller.</p>
-    <div class="kontakt-kort rev">
-      <div class="etikett">Mejla oss</div>
-      <div class="adress-rad">
-        <span class="adress" id="adress">kontakt.signalbrief@gmail.com</span>
-        <button class="kopiera" id="kopiera" type="button">Kopiera adressen</button>
-      </div>
-      <p>Skriv företagsnamnet och några rader om vad ni gör, så återkommer vi
-      med ett kostnadsfritt förslag inom två arbetsdagar. Vill ni hellre börja
-      med synlighetskollen — skriv det, så skickar vi den först.</p>
+    <h2>Berätta om ert företag</h2>
+    <p class="under">Fyll i det ni vet, så löser vi resten. Ni får ett
+    kostnadsfritt förslag med fast pris inom två arbetsdagar.</p>
+    <div class="kontakt-rad">
+      <form class="form-kort rev" id="offert" method="POST" action="https://api.web3forms.com/submit" novalidate>
+        <!-- TODO(JK): skapa gratiskonto på web3forms.com och klistra in
+             access key i WEB3FORMS_KEY längst ner i skriptet. Tills dess
+             används kopiera-fallbacken automatiskt. -->
+        <input type="checkbox" name="botcheck" class="dold" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="falt-rad">
+          <label class="falt"><span>Paket <i>(går att ändra sig)</i></span>
+            <select name="paket" id="f-paket">
+              <option value="Vet inte än" selected>Vet inte än, föreslå åt oss</option>
+              <option value="Bas">Bas — 6 900 kr</option>
+              <option value="Komplett">Komplett — 12 900 kr</option>
+              <option value="Synlig">Synlig — 19 900 kr</option>
+              <option value="Synlighetskoll">Bara gratis synlighetskoll</option>
+            </select>
+          </label>
+          <label class="falt"><span>Företag</span>
+            <input name="foretag" id="f-foretag" required autocomplete="organization" placeholder="t.ex. Bergmans Måleri">
+          </label>
+        </div>
+        <div class="falt-rad">
+          <label class="falt"><span>Mejladress</span>
+            <input type="email" name="email" id="f-mejl" required autocomplete="email" placeholder="ni@foretaget.se">
+          </label>
+          <label class="falt"><span>Telefon <i>(frivilligt)</i></span>
+            <input type="tel" name="telefon" autocomplete="tel" placeholder="Om ni hellre tar det per telefon">
+          </label>
+        </div>
+        <label class="falt"><span>Några rader om vad ni gör <i>(frivilligt)</i></span>
+          <textarea name="meddelande" id="f-medd" placeholder="Bransch, ort, och om ni har en sida idag — det räcker gott."></textarea>
+        </label>
+        <button class="cta" type="submit" id="f-skicka">Skicka förfrågan</button>
+        <p class="form-not">Kostnadsfritt och utan bindning. Vi hör av oss inom två arbetsdagar, sen är det ni som bestämmer.</p>
+        <div class="status" id="f-status" role="status" aria-live="polite"></div>
+      </form>
+      <aside class="mejl-kort rev">
+        <h3>Hellre vanligt mejl?</h3>
+        <div class="adress-rad">
+          <span class="adress" id="adress">kontakt.signalbrief@gmail.com</span>
+          <button class="kopiera" id="kopiera" type="button">Kopiera adressen</button>
+        </div>
+        <p>Skriv företagsnamnet och några rader om vad ni gör, så återkommer vi
+        med ett kostnadsfritt förslag inom två arbetsdagar.</p>
+        <p>Vill ni börja med den gratis synlighetskollen? Skriv det, så
+        skickar vi den först.</p>
+      </aside>
     </div>
   </div>
 </section>
 
+</main>
+
 <footer>
-  <div class="wrap">SIGNAL BRIEF · Hemsidor till fast pris för lokala företag</div>
+  <div class="wrap">
+    <span>Signal Brief · Hemsidor till fast pris för lokala företag</span>
+    <span><a href="index.html">För webbyråer</a></span>
+  </div>
 </footer>
 
 <script>
   (function(){
     var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-    /* före/efter-reglaget */
+    /* före/efter-reglaget — egen pointer-slider (ingen native range, se CSS-not) */
     var jamfor = document.getElementById("jamfor");
-    var reglage = document.getElementById("reglage");
-    if (jamfor && reglage) {
-      var satt = function(v){ jamfor.style.setProperty("--pos", v + "%"); };
-      reglage.addEventListener("input", function(){ satt(reglage.value); });
-      satt(reglage.value);
+    var handtag = document.getElementById("handtag");
+    var duk = jamfor ? jamfor.querySelector(".duk") : null;
+    if (jamfor && handtag && duk) {
+      var pos = 50;
+      var satt = function(v){
+        pos = Math.max(0, Math.min(100, v));
+        /* transform-only: procentvärdet används i translateX, aldrig i layout */
+        jamfor.style.setProperty("--pos", pos + "%");
+        handtag.setAttribute("aria-valuenow", String(Math.round(pos)));
+      };
+      satt(50);
+      var kord = false;
+      var drar = false;
+      var frånX = function(clientX){
+        var r = duk.getBoundingClientRect();
+        return (clientX - r.left) / r.width * 100;
+      };
+      duk.addEventListener("pointerdown", function(e){
+        e.preventDefault();
+        kord = true; drar = true;
+        duk.setPointerCapture(e.pointerId);
+        satt(frånX(e.clientX));
+      });
+      duk.addEventListener("dragstart", function(e){ e.preventDefault(); });
+      duk.addEventListener("pointermove", function(e){ if (drar) satt(frånX(e.clientX)); });
+      duk.addEventListener("pointerup", function(){ drar = false; });
+      duk.addEventListener("pointercancel", function(){ drar = false; });
+      handtag.addEventListener("keydown", function(e){
+        var steg = {ArrowLeft:-5, ArrowRight:5, ArrowDown:-5, ArrowUp:5};
+        if (e.key in steg) { kord = true; satt(pos + steg[e.key]); e.preventDefault(); }
+        else if (e.key === "Home") { kord = true; satt(0); e.preventDefault(); }
+        else if (e.key === "End") { kord = true; satt(100); e.preventDefault(); }
+      });
       /* en orkestrerad svepning vid inladdning: gammal → ny → vila på mitten */
       if (!reduce) {
         var start = null, fas1 = 1400, fas2 = 1100, paus = 350;
         var easing = function(t){ return t<.5 ? 2*t*t : -1+(4-2*t)*t; };
-        var kord = false;
         var svep = function(ts){
           if (kord) return;
           if (start === null) start = ts;
@@ -459,16 +613,14 @@
           if (t < fas1) { var p = easing(t/fas1); satt(100 - p*100); }
           else if (t < fas1 + paus) { satt(0); }
           else if (t < fas1 + paus + fas2) { var q = easing((t - fas1 - paus)/fas2); satt(q*50); }
-          else { satt(50); reglage.value = 50; kord = true; return; }
+          else { satt(50); kord = true; return; }
           requestAnimationFrame(svep);
         };
-        satt(100); reglage.value = 100; /* vila i före-läget tills svepet drar igång */
+        satt(100);
         var io1 = new IntersectionObserver(function(en){
           if (en[0].isIntersecting) { requestAnimationFrame(svep); io1.disconnect(); }
         }, {threshold:.4});
         io1.observe(jamfor);
-        /* rör användaren reglaget avbryts svepet */
-        reglage.addEventListener("pointerdown", function(){ kord = true; }, {once:true});
       }
     }
 
@@ -486,19 +638,106 @@
     }
 
     /* kopiera adressen */
+    function kopieraText(text, btn, normal){
+      function ok(){ btn.textContent = "Kopierad ✓"; setTimeout(function(){ btn.textContent = normal; }, 2000); }
+      function fallback(){
+        var ta = document.createElement("textarea");
+        ta.value = text; ta.setAttribute("readonly","");
+        ta.style.position = "absolute"; ta.style.left = "-9999px";
+        document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); ok(); } catch(e){}
+        document.body.removeChild(ta);
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(ok, fallback);
+      } else { fallback(); }
+    }
     var btn = document.getElementById("kopiera");
     if (btn) {
-      var adr = document.getElementById("adress").textContent;
       btn.addEventListener("click", function(){
-        function ok(){ btn.textContent = "Kopierad ✓"; setTimeout(function(){ btn.textContent = "Kopiera adressen"; }, 2000); }
-        function fallback(){
-          var r = document.createRange(); r.selectNodeContents(document.getElementById("adress"));
-          var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
-          try { document.execCommand("copy"); ok(); } catch(e){}
+        kopieraText(document.getElementById("adress").textContent, btn, "Kopiera adressen");
+      });
+    }
+
+    /* paketval → förifyllt formulär */
+    var valSelect = document.getElementById("f-paket");
+    document.querySelectorAll(".valj").forEach(function(k){
+      k.addEventListener("click", function(){
+        if (valSelect) valSelect.value = k.getAttribute("data-paket");
+        var mal = document.getElementById("kontakt");
+        if (mal) mal.scrollIntoView(reduce ? {} : {behavior:"smooth"});
+        var f = document.getElementById("f-foretag");
+        if (f) setTimeout(function(){ f.focus({preventScroll:true}); }, reduce ? 0 : 450);
+      });
+    });
+
+    /* formulär: Web3Forms när nyckel finns, annars kopiera-fallback (aldrig mailto) */
+    var WEB3FORMS_KEY = ""; /* TODO(JK): access key från web3forms.com */
+    var form = document.getElementById("offert");
+    var status = document.getElementById("f-status");
+    var skicka = document.getElementById("f-skicka");
+    var ADRESS = "kontakt.signalbrief@gmail.com";
+
+    function visaStatus(html, typ){
+      status.className = "status syns " + typ;
+      status.innerHTML = html;
+    }
+    function komponera(){
+      var d = new FormData(form);
+      return "Hej!\n\n" +
+        "Vi vill ha ett kostnadsfritt förslag.\n\n" +
+        "Paket: " + (d.get("paket") || "Vet inte än") + "\n" +
+        "Företag: " + (d.get("foretag") || "") + "\n" +
+        "Mejl: " + (d.get("email") || "") + "\n" +
+        "Telefon: " + (d.get("telefon") || "-") + "\n\n" +
+        (d.get("meddelande") ? "Om oss: " + d.get("meddelande") + "\n\n" : "") +
+        "Hälsningar";
+    }
+    function visaFallback(inledning){
+      visaStatus(inledning +
+        '<div class="fallback"><textarea readonly id="fb-text" aria-label="Färdigskrivet meddelande att kopiera"></textarea>' +
+        '<div class="knapp-rad">' +
+        '<button type="button" class="knapp" id="fb-kop-medd">Kopiera meddelandet</button>' +
+        '<button type="button" class="knapp" id="fb-kop-adr">Kopiera mejladressen</button>' +
+        '</div></div>', "fel");
+      document.getElementById("fb-text").value = komponera();
+      var b1 = document.getElementById("fb-kop-medd");
+      var b2 = document.getElementById("fb-kop-adr");
+      b1.addEventListener("click", function(){ kopieraText(document.getElementById("fb-text").value, b1, "Kopiera meddelandet"); });
+      b2.addEventListener("click", function(){ kopieraText(ADRESS, b2, "Kopiera mejladressen"); });
+    }
+    if (form) {
+      form.addEventListener("submit", function(ev){
+        ev.preventDefault();
+        /* enkel validering med tydliga besked */
+        var foretag = document.getElementById("f-foretag");
+        var mejl = document.getElementById("f-mejl");
+        if (!foretag.value.trim()) { visaStatus("Skriv företagsnamnet, så vet vi vem förslaget gäller.", "fel"); foretag.focus(); return; }
+        if (!mejl.value.trim() || mejl.value.indexOf("@") < 1) { visaStatus("Skriv en mejladress vi kan svara till.", "fel"); mejl.focus(); return; }
+
+        if (!WEB3FORMS_KEY) {
+          visaFallback("<b>Formuläret aktiveras inom kort.</b> Under tiden: ert meddelande är färdigskrivet nedan. Kopiera det och mejla till <b>" + ADRESS + "</b>, så svarar vi inom två arbetsdagar.");
+          return;
         }
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-          navigator.clipboard.writeText(adr).then(ok, fallback);
-        } else { fallback(); }
+        skicka.disabled = true; skicka.textContent = "Skickar …";
+        var d = new FormData(form);
+        d.set("access_key", WEB3FORMS_KEY);
+        d.set("subject", "Förfrågan via signalbrief.se — " + d.get("paket") + " — " + d.get("foretag"));
+        d.set("from_name", "signalbrief.se");
+        fetch("https://api.web3forms.com/submit", {
+          method: "POST",
+          body: d,
+          headers: { "Accept": "application/json" }
+        }).then(function(r){ return r.json(); }).then(function(svar){
+          if (svar.success) {
+            form.querySelectorAll(".falt, .cta, .form-not").forEach(function(e){ e.style.display = "none"; });
+            visaStatus("<b>Tack! Förfrågan är skickad.</b> Vi återkommer till " +
+              (mejl.value || "er") + " med ett kostnadsfritt förslag inom två arbetsdagar.", "lyckat");
+          } else { throw new Error(svar.message || "okänt fel"); }
+        }).catch(function(){
+          skicka.disabled = false; skicka.textContent = "Skicka förfrågan";
+          visaFallback("<b>Det gick inte att skicka just nu.</b> Ert meddelande är färdigskrivet nedan. Kopiera det och mejla till <b>" + ADRESS + "</b>, så svarar vi inom två arbetsdagar.");
+        });
       });
     }
   })();
