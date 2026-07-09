@@ -145,8 +145,24 @@
   .efter .topp .namn i{width:14px;height:14px;border-radius:4px;background:#fff}
   .efter .topp .ring{background:#C14E24;color:#fff;border-radius:7px;padding:5px 9px;
        font-weight:700;font-size:.56rem;white-space:nowrap}
-  .efter .ehero{position:relative;flex:1;min-height:0;overflow:hidden;
+  .efter .ehero{position:relative;flex:none;height:56%;overflow:hidden;
        background:radial-gradient(120% 90% at 18% 88%,#2A4D77 0%,#1E3F63 55%)}
+  /* nästa sektion skymtar under hjälten — som en riktig sida mitt i
+     scroll (fyller skärmen; högerkortet + rubriken hela i höger halva) */
+  .efter .esektion{position:relative;flex:1;min-height:0;background:#F7F9FB;overflow:hidden}
+  .efter .erubrik{position:absolute;top:12px;right:8px;width:47%;
+       font-family:"Arvo",Georgia,serif;font-weight:700;font-size:.6rem;
+       line-height:1.25;color:#16222E;text-wrap:balance}
+  .efter .ekortrad{position:absolute;left:8px;right:8px;top:52px;display:flex;gap:6px}
+  .efter .ekort{flex:1;background:#fff;border:1px solid #DCE4EB;border-radius:9px;
+       overflow:hidden;box-shadow:0 4px 10px rgba(22,34,46,.07)}
+  .efter .ekort .eprov{display:block;height:5px;
+       background:linear-gradient(90deg,#DFE7EE 33%,#9FB6C9 33% 66%,#5F82A3 66%)}
+  .efter .ekort.tva .eprov{background:linear-gradient(90deg,#E9E2D5 33%,#C9B896 33% 66%,#8A6F49 66%)}
+  .efter .ekort .einre{display:block;padding:6px 8px 7px;font-size:.53rem;
+       font-weight:700;color:#16222E;white-space:nowrap}
+  .efter .ekort .einre small{display:block;font-weight:600;color:#4A5A68;
+       font-size:.5rem;margin-top:1px}
   /* högerankrat innehåll: höger halva är alltid en hel komposition,
      så inget klipps mitt i ord när reglaget vilar på 50 % (v3-lärdomen) */
   .efter .etext{position:absolute;top:48px;right:8px;width:47%;
@@ -164,7 +180,7 @@
   .efter .etrust span::before{content:"✓";color:#E8B84B;font-weight:800;margin-right:.35rem}
   /* vänster halva: firmans färgkarta (signaturen från fullständiga
      exemplet) + mjukt ljus — visas när reglaget dras åt höger */
-  .efter .minikarta{position:absolute;left:16px;bottom:44px;background:#fff;border-radius:8px;
+  .efter .minikarta{position:absolute;left:14px;bottom:12px;background:#fff;border-radius:8px;
        box-shadow:0 6px 16px rgba(8,18,30,.4);padding:5px 6px 4px;display:flex;gap:3px;
        align-items:flex-end}
   .efter .minikarta i{display:block;width:10px;border-radius:2px}
@@ -412,6 +428,13 @@
                       <span>Ansvarsförsäkrade</span>
                       <span>Svar samma dag</span>
                     </div>
+                  </div>
+                </div>
+                <div class="esektion">
+                  <div class="erubrik">Tjänster med pris ni kan räkna på</div>
+                  <div class="ekortrad">
+                    <span class="ekort tva"><span class="eprov"></span><span class="einre">Tapetsering<small>fr. 6 400 kr</small></span></span>
+                    <span class="ekort"><span class="eprov"></span><span class="einre">Måleri invändigt<small>fr. 4 900 kr</small></span></span>
                   </div>
                 </div>
                 <div class="rand"><span>✓ ROT-avdrag</span><span>✓ Fast offert 48 h</span><span>✓ Försäkrade</span></div>
