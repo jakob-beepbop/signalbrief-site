@@ -272,20 +272,25 @@
   .princip-rad b{display:block;color:var(--blaeck);font-weight:700;margin-bottom:.4rem;font-size:1.05rem}
 
   /* synlighetskoll */
-  .koll{background:var(--mint)}
-  .koll .wrap{display:grid;grid-template-columns:1fr;gap:2.2rem;align-items:center}
-  @media(min-width:900px){ .koll .wrap{grid-template-columns:1.1fr .9fr} }
-  .koll h2{font-size:clamp(1.55rem,3vw,2.1rem)}
-  .koll p{color:var(--dis);max-width:52ch}
-  .avlasning{background:var(--yta);border:1px solid var(--linje);border-radius:16px;padding:1.5rem 1.6rem;
-        box-shadow:var(--skugga);font-size:.93rem;font-variant-numeric:tabular-nums}
-  .avlasning .rub{display:flex;justify-content:space-between;gap:1rem;align-items:baseline;
-        font-weight:700;margin-bottom:.7rem}
-  .avlasning .rub span:last-child{font-weight:500;color:var(--dis);font-size:.82rem}
-  .avlasning .rad{display:flex;justify-content:space-between;gap:1rem;padding:.65rem 0;border-top:1px dashed var(--linje)}
-  .avlasning .ok{color:var(--gron);font-weight:700;white-space:nowrap}
-  .avlasning .miss{color:var(--varm);font-weight:700;white-space:nowrap}
-  .avlasning .not{margin-top:.85rem;font-size:.82rem;color:var(--dis);line-height:1.55}
+  /* ---------- exempel-sektion (ersatte koll-sektionen 2026-07-09,
+     JK:s förslag: exemplen är beviset + mobilnav-åtkomst) ---------- */
+  .exempel-sek{background:var(--mint)}
+  .exempel-rad{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+        gap:1.5rem;margin-top:2rem}
+  a.exkort{display:block;text-decoration:none;color:var(--blaeck);background:var(--yta);
+        border:1px solid var(--linje);border-radius:16px;overflow:hidden;
+        box-shadow:var(--skugga);transition:transform .15s ease,box-shadow .15s ease}
+  a.exkort:hover{transform:translateY(-2px);box-shadow:var(--skugga-stor)}
+  .exkort img{width:100%;height:auto;aspect-ratio:1280/800;object-fit:cover;object-position:top;
+        display:block;border-bottom:1px solid var(--linje)}
+  .exkort .exinfo{display:flex;justify-content:space-between;align-items:baseline;
+        gap:1rem;padding:.95rem 1.15rem 1.05rem}
+  .exkort .exinfo b{font-size:1rem;letter-spacing:-.01em}
+  .exkort .exinfo small{display:block;font-size:.84rem;color:var(--dis);
+        font-weight:400;margin-top:.1rem}
+  .exkort .exoppna{white-space:nowrap;color:var(--gron);font-weight:700;font-size:.9rem}
+  .exnot{margin-top:1.3rem;font-size:.92rem;color:var(--dis)}
+  @media (prefers-reduced-motion: reduce){ a.exkort,a.exkort:hover{transition:none;transform:none} }
 
   /* ---------- kontakt + formulär ---------- */
   .kontakt-rad{display:grid;grid-template-columns:1fr;gap:1.6rem;align-items:start}
@@ -351,9 +356,8 @@
     </a>
     <nav aria-label="Sidnavigering">
       <a href="#paket">Paket &amp; priser</a>
-      <a href="/exempel/">Exempel</a>
+      <a href="#exempel">Exempel</a>
       <a href="#process">Så går det till</a>
-      <a href="#koll">Gratis synlighetskoll</a>
       <a href="#kontakt">Kontakt</a>
     </nav>
   </div>
@@ -456,7 +460,7 @@
     <p class="under">Alla paket är fasta priser med definierat innehåll: ni vet
     vad det kostar och vad ni får innan vi börjar. Domän, innehåll och sida är
     era, för alltid. Vill ni se nivån först?
-    <a href="/exempel/">Titta på exempel vi byggt</a>.</p>
+    <a href="#exempel">Titta på exempel vi byggt</a>.</p>
     <div class="kort-rad">
       <div class="kort">
         <span class="namn">Bas</span>
@@ -540,23 +544,26 @@
   </div>
 </section>
 
-<section id="koll" class="sektion koll">
+<section id="exempel" class="sektion exempel-sek">
   <div class="wrap">
-    <div>
-      <h2>Vill ni se läget först? <em>Börja med en gratis synlighetskoll.</em></h2>
-      <p>Vi kollar vad kunder faktiskt ser när de söker efter er: på Google,
-      i kartan och hos AI-assistenter. Avläsningen får ni med källa och
-      datum på varje rad. Gratis och utan förpliktelse, oavsett om ni går
-      vidare med en hemsida eller inte.</p>
+    <h2>Se nivån själv. <em>Två sidor vi byggt.</em></h2>
+    <p class="under">Företagen är påhittade, sidorna är riktiga: öppna dem
+    och klicka runt fritt. Så här ser det ut när vi levererar.</p>
+    <div class="exempel-rad">
+      <a class="exkort" href="exempel/bergmans-maleri.html">
+        <img src="exempel/img/bergmans-maleri-desktop.jpg" width="1280" height="800" loading="lazy"
+             alt="Exempelsida vi byggt för en målerifirma: Bergmans Måleri, med fast offert och ROT-avdrag">
+        <span class="exinfo"><span><b>Bergmans Måleri</b><small>målerifirma · Täby</small></span><span class="exoppna">Öppna sidan →</span></span>
+      </a>
+      <a class="exkort" href="exempel/salong-vildhavre.html">
+        <img src="exempel/img/salong-vildhavre-desktop.jpg" width="1280" height="800" loading="lazy"
+             alt="Exempelsida vi byggt för en frisörsalong: Salong Vildhavre, med prislista och bokning">
+        <span class="exinfo"><span><b>Salong Vildhavre</b><small>frisörsalong · Sundbyberg</small></span><span class="exoppna">Öppna sidan →</span></span>
+      </a>
     </div>
-    <div class="avlasning" aria-label="Exempel på synlighetskoll">
-      <div class="rub"><span>Synlighetskoll</span><span>byggfirma · Sthlms län</span></div>
-      <div class="rad"><span>Googlar man företagsnamnet</span><span class="ok">Syns ✓</span></div>
-      <div class="rad"><span>Söker man "byggfirma + ort"</span><span class="miss">Saknas —</span></div>
-      <div class="rad"><span>Frågar man en AI om tips</span><span class="miss">Saknas —</span></div>
-      <div class="not">Verklig, anonymiserad avläsning. Er gör vi gratis,
-      med källa och datum på varje rad.</div>
-    </div>
+    <p class="exnot">Båda finns även samlade i <a href="/exempel/">exempelgalleriet</a>.
+    Vill ni hellre börja med en gratis synlighetskoll av er egen närvaro?
+    Välj det i formuläret nedan.</p>
   </div>
 </section>
 
