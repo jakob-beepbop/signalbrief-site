@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="description" content="Exempel på hemsidor från Signal Brief: två kompletta sajter byggda för fiktiva lokala företag. Så här ser nivån ut.">
+<title>Exempel på våra hemsidor — Signal Brief</title>
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="%23136A48"/><path d="M9 17.5l5 5 9-11.5" stroke="%23FFFFFF" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Besley:ital,wght@1,500;1,600;1,700&display=swap" rel="stylesheet">
+<style>
+  /* Signal Brief design v4-tokens (samma system som foretag.html) */
+  :root{
+    color-scheme: light dark;
+    --bg:#F8FAF8; --yta:#FFFFFF; --blaeck:#141B16; --dis:#46554C;
+    --gron:#136A48; --gron-klar:#1D8A5F; --mint:#E7F1EA; --linje:#DFE7E1;
+    --djup:#0D2C1E;
+    --skugga:0 1px 2px rgba(20,27,22,.04),0 12px 32px -16px rgba(20,27,22,.16);
+    --skugga-stor:0 2px 4px rgba(20,27,22,.05),0 44px 90px -30px rgba(20,27,22,.34);
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0C120E; --yta:#131B15; --blaeck:#E8EFE9; --dis:#A6B9AC;
+      --gron:#4FCB98; --gron-klar:#66D8A9; --mint:#152319; --linje:#22302A;
+      --djup:#0A2418;
+      --skugga:0 1px 2px rgba(0,0,0,.4),0 12px 32px -16px rgba(0,0,0,.55);
+      --skugga-stor:0 2px 4px rgba(0,0,0,.5),0 44px 90px -30px rgba(0,0,0,.7);
+    }
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  body{font-family:"Familjen Grotesk",system-ui,sans-serif;background:var(--bg);color:var(--blaeck);
+       font-size:1.06rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{line-height:1.08;letter-spacing:-.022em;text-wrap:balance;font-weight:700}
+  h1 em,h2 em{font-family:"Besley",Georgia,serif;font-style:italic;font-weight:600;
+       color:var(--gron);letter-spacing:-.01em}
+  img{max-width:100%;height:auto;display:block}
+  a{color:var(--gron)}
+  :focus-visible{outline:3px solid var(--gron-klar);outline-offset:3px;border-radius:3px}
+  .wrap{max-width:1120px;margin:0 auto;padding:0 clamp(1.1rem,4vw,1.6rem)}
+
+  header.topp{border-bottom:1px solid var(--linje)}
+  .topp-rad{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.9rem 0}
+  .marke{display:flex;align-items:center;gap:.55rem;text-decoration:none;color:var(--blaeck);font-weight:700;font-size:1.08rem;letter-spacing:-.015em}
+  .marke .bock{width:30px;height:30px;border-radius:7px;background:var(--gron);display:grid;place-items:center}
+  .tillbaka{font-weight:600;font-size:.95rem;text-decoration:none}
+  .tillbaka:hover{text-decoration:underline}
+
+  .intro{padding:clamp(3rem,7vw,5.5rem) 0 clamp(1.6rem,3vw,2.6rem)}
+  .intro h1{font-size:clamp(2.1rem,5vw,3.4rem);max-width:20ch}
+  .intro p{color:var(--dis);max-width:60ch;margin-top:1.1rem;font-size:1.12rem}
+  .intro .arlig{margin-top:1.2rem;display:inline-block;background:var(--mint);border:1px solid var(--linje);
+       border-radius:99px;padding:.4rem 1rem;font-size:.9rem;font-weight:600;color:var(--blaeck)}
+
+  .fall{padding:clamp(2.6rem,6vw,4.6rem) 0}
+  .fall + .fall{border-top:1px solid var(--linje)}
+  .fall-grid{display:grid;gap:2.4rem;align-items:center}
+  @media(min-width:960px){
+    .fall-grid{grid-template-columns:1.25fr 1fr;gap:3.4rem}
+    .fall:nth-of-type(2) .fall-grid{grid-template-columns:1fr 1.25fr}
+    .fall:nth-of-type(2) .fall-bild{order:2}
+  }
+  .fall h2{font-size:clamp(1.7rem,3.4vw,2.4rem)}
+  .fall .bransch{color:var(--dis);font-weight:600;margin-top:.3rem}
+  .fall .beskrivning{color:var(--dis);margin-top:1rem;max-width:52ch}
+  .fall ul.val{list-style:none;margin-top:1.4rem;display:grid;gap:.55rem}
+  .fall ul.val li{padding-left:1.7rem;position:relative;font-size:.98rem}
+  .fall ul.val li::before{content:"";position:absolute;left:2px;top:.52rem;width:12px;height:7px;
+       border-left:2.5px solid var(--gron);border-bottom:2.5px solid var(--gron);transform:rotate(-45deg)}
+  .oppna{display:inline-block;margin-top:1.7rem;background:var(--gron);color:#fff;text-decoration:none;
+       font-weight:700;padding:.85rem 1.4rem;border-radius:10px}
+  .oppna:hover{background:var(--gron-klar)}
+  @media (prefers-color-scheme: dark){ .oppna{color:#06140D} }
+  .oppna small{font-weight:500;opacity:.85}
+
+  /* skärmkomposition: webbläsarram + telefon */
+  .fall-bild{position:relative}
+  .fonster{background:var(--yta);border:1px solid var(--linje);border-radius:14px;overflow:hidden;
+       box-shadow:var(--skugga-stor)}
+  .fonster .rad{display:flex;align-items:center;gap:.5rem;padding:.55rem .8rem;border-bottom:1px solid var(--linje)}
+  .fonster .rad i{width:9px;height:9px;border-radius:50%;background:var(--linje)}
+  .fonster .rad .url{flex:1;margin-left:.4rem;background:var(--bg);border-radius:6px;
+       font-size:.72rem;color:var(--dis);padding:.22rem .7rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .telefonram{position:absolute;right:clamp(-6px,-1vw,-14px);bottom:-26px;width:clamp(96px,24%,132px);
+       background:#101613;border-radius:22px;padding:5px;box-shadow:var(--skugga-stor)}
+  .telefonram img{border-radius:17px}
+  @media(min-width:960px){ .fall:nth-of-type(2) .telefonram{right:auto;left:clamp(-6px,-1vw,-14px)} }
+
+  .slut{padding:clamp(3rem,7vw,5.5rem) 0 clamp(3.6rem,8vw,6rem)}
+  .slutkort{background:var(--djup);color:#E9F2EC;border-radius:22px;padding:clamp(2rem,5vw,3.4rem);
+       box-shadow:var(--skugga-stor);display:grid;gap:1.4rem;justify-items:start}
+  @media(min-width:880px){ .slutkort{grid-template-columns:1.4fr auto;align-items:center} }
+  .slutkort h2{color:#fff;font-size:clamp(1.6rem,3.2vw,2.3rem)}
+  .slutkort h2 em{color:#7FE0B4}
+  .slutkort p{color:#A3BFAF;margin-top:.6rem;max-width:50ch}
+  .slutkort .oppna{margin-top:0;background:#fff;color:var(--djup)}
+  .slutkort .oppna:hover{background:#DFEDE4}
+
+  footer.fot{border-top:1px solid var(--linje);padding:1.5rem 0 2.2rem;font-size:.86rem;color:var(--dis)}
+  footer.fot .wrap{display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-between}
+
+  @media (prefers-reduced-motion: no-preference){
+    .avsloja{opacity:0;translate:0 18px;transition:opacity .6s cubic-bezier(.22,.9,.32,1),translate .6s cubic-bezier(.22,.9,.32,1)}
+    .avsloja.syns{opacity:1;translate:0 0}
+  }
+</style>
+</head>
+<body>
+
+<header class="topp">
+  <div class="wrap topp-rad">
+    <a class="marke" href="/foretag">
+      <span class="bock" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M5 13l4.5 4.5L19 7" stroke="#fff" stroke-width="3.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Signal Brief
+    </a>
+    <a class="tillbaka" href="/foretag">← Till signalbrief.se/foretag</a>
+  </div>
+</header>
+
+<main>
+  <section class="intro">
+    <div class="wrap">
+      <h1>Så här ser en sida från oss <em>faktiskt</em> ut</h1>
+      <p>Två kompletta exempel, byggda av oss från grunden. Företagen är
+      påhittade (det säger vi hellre rakt ut än att visa upp låtsaskunder),
+      men hantverket är på riktigt: snabbt, mobilanpassat och byggt för att
+      synas på Google.</p>
+      <span class="arlig">Fiktiva företag · Riktigt hantverk · Klicka runt i exemplen</span>
+    </div>
+  </section>
+
+  <section class="fall">
+    <div class="wrap fall-grid">
+      <div class="fall-bild avsloja">
+        <div class="fonster">
+          <div class="rad" aria-hidden="true"><i></i><i></i><i></i><span class="url">bergmansmaleri.se · exempel</span></div>
+          <img src="img/bergmans-maleri-desktop.jpg" width="1280" height="800"
+               alt="Skärmdump av exempelsajten för Bergmans Måleri i datorvy: rubrik, offertknapp och foto på målare i arbete">
+        </div>
+        <div class="telefonram" aria-hidden="true">
+          <img src="img/bergmans-maleri-mobil.jpg" width="390" height="800" alt="" loading="lazy">
+        </div>
+      </div>
+      <div>
+        <h2>Bergmans Måleri</h2>
+        <p class="bransch">Målerifirma i Täby (fiktiv)</p>
+        <p class="beskrivning">En hantverkarsajt ska göra en enda sak: få
+        kunden att våga be om offert. Därför ligger fasta priser, ROT-avdrag
+        och offertlöftet överst, och telefonnumret är alltid ett klick bort.</p>
+        <ul class="val">
+          <li>Fast offert-knapp och telefonnummer i sikte hela tiden</li>
+          <li>Priser kunden kan räkna på, med ROT-avdraget förklarat</li>
+          <li>Egen färgskala och typografi, ingen mall</li>
+          <li>Mobilanpassad, snabbladdad och sökmotorvänlig</li>
+        </ul>
+        <a class="oppna" href="bergmans-maleri.html">Öppna exemplet <small>(klicka runt fritt)</small></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="fall">
+    <div class="wrap fall-grid">
+      <div class="fall-bild avsloja">
+        <div class="fonster">
+          <div class="rad" aria-hidden="true"><i></i><i></i><i></i><span class="url">salongvildhavre.se · exempel</span></div>
+          <img src="img/salong-vildhavre-desktop.jpg" width="1280" height="800"
+               alt="Skärmdump av exempelsajten för Salong Vildhavre i datorvy: fotohjälte med bokningsknapp och prislista">
+        </div>
+        <div class="telefonram" aria-hidden="true">
+          <img src="img/salong-vildhavre-mobil.jpg" width="390" height="800" alt="" loading="lazy">
+        </div>
+      </div>
+      <div>
+        <h2>Salong Vildhavre</h2>
+        <p class="bransch">Frisörsalong i Sundbyberg (fiktiv)</p>
+        <p class="beskrivning">En salong säljer känsla och tillit. Här får
+        fotot och prislistan bära sidan: kunden ser direkt vad det kostar,
+        hur det ser ut och hur man bokar, utan att leta.</p>
+        <ul class="val">
+          <li>Boka tid-knapp som följer med genom hela sidan</li>
+          <li>Komplett prislista med tider, som en riktig salong</li>
+          <li>Egen typografi och färgvärld, anpassad efter verksamheten</li>
+          <li>Mobilanpassad, snabbladdad och sökmotorvänlig</li>
+        </ul>
+        <a class="oppna" href="salong-vildhavre.html">Öppna exemplet <small>(klicka runt fritt)</small></a>
+      </div>
+    </div>
+  </section>
+
+  <section class="slut">
+    <div class="wrap">
+      <div class="slutkort avsloja">
+        <div>
+          <h2>Vill du ha en sån här — <em>för ditt företag?</em></h2>
+          <p>Fast pris från 6 900 kr. Ni äger domän, innehåll och sida,
+          utan månadskostnader. Svara på mejlet ni fick av oss, eller hör
+          av er direkt.</p>
+        </div>
+        <a class="oppna" href="/foretag#kontakt">Se paket och priser</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="fot">
+  <div class="wrap">
+    <span>© 2026 Signal Brief · kontakt@signalbrief.se</span>
+    <span>Exemplen är fiktiva företag byggda av oss · foton: Pexels (exempelbilder)</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var io = new IntersectionObserver(function(poster){
+      poster.forEach(function(p){ if(p.isIntersecting){ p.target.classList.add('syns'); io.unobserve(p.target);} });
+    },{threshold:.12});
+    document.querySelectorAll('.avsloja').forEach(function(el){ io.observe(el); });
+  })();
+</script>
+</body>
+</html>

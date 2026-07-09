@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="description" content="Exempelsajt byggd av Signal Brief: Bergmans Måleri — fiktiv målerifirma i Täby. Fast offert inom 48 timmar, ROT-avdrag.">
+<title>Bergmans Måleri — Målare i Täby med fast offert | Exempel av Signal Brief</title>
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="7" fill="%231E3F63"/><rect x="7" y="7" width="18" height="11" rx="2" fill="%23F4F7FA"/><rect x="14" y="18" width="4" height="8" rx="1.5" fill="%23F4F7FA"/></svg>'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:ital,wght@0,400;0,500;0,700;0,800;1,400&display=swap" rel="stylesheet">
+<style>
+  /* Bergmans Måleri — DEMO byggd av Signal Brief (fiktivt företag).
+     Egen designvärld, medvetet INTE Signal Briefs gröna: arbetsblå
+     (målarens arbetskläder) + färgkarte-motiv. En familj (Hanken
+     Grotesk) med hård viktkontrast. */
+  :root{
+    --bg:#F7F9FB;
+    --yta:#FFFFFF;
+    --ink:#16222E;
+    --dis:#4A5A68;
+    --bla:#1E3F63;         /* arbetsblå — bär identiteten */
+    --bla-djup:#152E4A;
+    --tegel:#C14E24;       /* CTA/accent — blymönja */
+    --tegel-djup:#A84118;
+    --linje:#DCE4EB;
+    --skugga:0 1px 2px rgba(22,34,46,.05),0 14px 34px -18px rgba(22,34,46,.22);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-padding-top:76px}
+  body{font-family:"Hanken Grotesk",system-ui,sans-serif;background:var(--bg);color:var(--ink);
+       font-size:1.05rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{line-height:1.06;letter-spacing:-.025em;font-weight:800;text-wrap:balance}
+  img{max-width:100%;height:auto;display:block}
+  a{color:var(--bla)}
+  :focus-visible{outline:3px solid var(--tegel);outline-offset:3px;border-radius:3px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(1.1rem,4vw,1.6rem)}
+
+  /* Exempel-band (Signal Briefs ärlighetsmärkning — alltid synligt) */
+  .exempelband{background:#0E1B12;color:#CFE7D8;font-size:.82rem;padding:.55rem 1rem;
+       text-align:center;letter-spacing:.01em}
+  .exempelband a{color:#7FE0B4;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+
+  /* topp */
+  header.topp{position:sticky;top:0;z-index:50;background:rgba(247,249,251,.94);
+       border-bottom:1px solid var(--linje)}
+  .topp-rad{display:flex;align-items:center;justify-content:space-between;gap:1rem;
+       padding:.8rem 0}
+  .marke{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--ink)}
+  .marke .ruta{width:34px;height:34px;border-radius:8px;background:var(--bla);display:grid;place-items:center}
+  .marke .ruta svg{display:block}
+  .marke b{font-size:1.12rem;font-weight:800;letter-spacing:-.02em}
+  .marke small{display:block;font-size:.72rem;color:var(--dis);font-weight:500;letter-spacing:.02em;margin-top:-2px}
+  nav.huvud{display:none;gap:1.6rem;font-weight:600;font-size:.95rem}
+  nav.huvud a{text-decoration:none;color:var(--dis)}
+  nav.huvud a:hover{color:var(--ink)}
+  .ring-cta{background:var(--bla);color:#fff;text-decoration:none;font-weight:700;font-size:.95rem;
+       padding:.6rem 1rem;border-radius:9px;white-space:nowrap}
+  .ring-cta:hover{background:var(--bla-djup)}
+  @media(min-width:860px){ nav.huvud{display:flex} }
+
+  /* hjälte */
+  .hjalte{padding:clamp(2.6rem,6vw,4.6rem) 0 clamp(2.4rem,5vw,4rem)}
+  .hjalte-grid{display:grid;gap:2.2rem;align-items:center}
+  @media(min-width:880px){ .hjalte-grid{grid-template-columns:1.05fr .95fr;gap:3rem} }
+  .hjalte h1{font-size:clamp(2.2rem,5.4vw,3.6rem);margin-bottom:1.1rem}
+  .hjalte h1 .mark{color:var(--bla)}
+  .ingress{color:var(--dis);font-size:1.12rem;max-width:52ch;margin-bottom:1.6rem}
+  .cta-rad{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center}
+  .knapp{display:inline-block;text-decoration:none;font-weight:700;border-radius:11px;
+       padding:.95rem 1.5rem;font-size:1.02rem}
+  .knapp.primar{background:var(--tegel);color:#fff;box-shadow:0 10px 22px -12px rgba(22,34,46,.35)}
+  .knapp.primar:hover{background:var(--tegel-djup)}
+  .knapp.lugn{border:2px solid var(--linje);color:var(--ink);background:var(--yta)}
+  .knapp.lugn:hover{border-color:var(--bla)}
+  .stjarnrad{display:flex;align-items:center;gap:.5rem;margin-top:1.3rem;font-size:.95rem;color:var(--dis)}
+  .stjarnrad .s{color:#C99019;letter-spacing:2px;font-size:1rem}
+  .stjarnrad b{color:var(--ink)}
+  .hjalte-bild{position:relative}
+  .hjalte-bild img{border-radius:18px;box-shadow:var(--skugga);aspect-ratio:4/5;object-fit:cover;width:100%}
+  /* färgkarte-motivet: firmans "signatur" */
+  .fargkarta{position:absolute;left:-14px;bottom:22px;background:#fff;border-radius:12px;
+       box-shadow:var(--skugga);padding:.7rem .8rem .6rem;display:flex;gap:.45rem;align-items:flex-end}
+  .fargkarta i{display:block;width:26px;height:44px;border-radius:5px}
+  .fargkarta i:nth-child(1){background:#DFE7EE;height:34px}
+  .fargkarta i:nth-child(2){background:#9FB6C9;height:40px}
+  .fargkarta i:nth-child(3){background:#5F82A3;height:46px}
+  .fargkarta i:nth-child(4){background:#2C5B8A;height:52px}
+  .fargkarta i:nth-child(5){background:#1E3F63;height:58px}
+  .trustrad{display:flex;gap:1.6rem;flex-wrap:wrap;margin-top:2.4rem;padding-top:1.4rem;
+       border-top:1px solid var(--linje);font-size:.94rem;font-weight:600;color:var(--dis)}
+  .trustrad span::before{content:"✓";color:var(--bla);font-weight:800;margin-right:.45rem}
+
+  /* tjänster som färgprover */
+  .sektion{padding:clamp(3rem,7vw,5.4rem) 0}
+  .sektion h2{font-size:clamp(1.7rem,3.4vw,2.4rem);margin-bottom:.6rem}
+  .sektion .under{color:var(--dis);max-width:56ch;margin-bottom:2.2rem}
+  .tjanster{display:grid;gap:1.3rem}
+  @media(min-width:820px){ .tjanster{grid-template-columns:repeat(3,1fr)} }
+  .tjanst{background:var(--yta);border:1px solid var(--linje);border-radius:16px;overflow:hidden;
+       box-shadow:var(--skugga);display:flex;flex-direction:column}
+  .tjanst .prov{height:12px}
+  .tjanst:nth-child(1) .prov{background:linear-gradient(90deg,#DFE7EE 33%,#9FB6C9 33% 66%,#5F82A3 66%)}
+  .tjanst:nth-child(2) .prov{background:linear-gradient(90deg,#E9E2D5 33%,#C9B896 33% 66%,#8A6F49 66%)}
+  .tjanst:nth-child(3) .prov{background:linear-gradient(90deg,#E3E8E0 33%,#A7B8A0 33% 66%,#5C7455 66%)}
+  .tjanst .inre{padding:1.5rem 1.5rem 1.4rem;display:flex;flex-direction:column;flex:1}
+  .tjanst h3{font-size:1.18rem;margin-bottom:.4rem}
+  .tjanst p{color:var(--dis);font-size:.96rem;flex:1}
+  .tjanst .pris{margin-top:1.1rem;font-weight:800;font-size:1.05rem}
+  .tjanst .pris small{font-weight:500;color:var(--dis)}
+
+  /* så går det till */
+  .steg{display:grid;gap:1.3rem;counter-reset:steg}
+  @media(min-width:820px){ .steg{grid-template-columns:repeat(3,1fr)} }
+  .steg li{list-style:none;counter-increment:steg;background:var(--yta);border:1px solid var(--linje);
+       border-radius:16px;padding:1.5rem}
+  .steg li::before{content:counter(steg);display:grid;place-items:center;width:36px;height:36px;
+       border-radius:50%;background:var(--bla);color:#fff;font-weight:800;margin-bottom:.9rem}
+  .steg b{display:block;font-size:1.08rem;letter-spacing:-.01em;margin-bottom:.3rem}
+  .steg p{color:var(--dis);font-size:.95rem}
+
+  /* ROT-band med bild */
+  .rotband{background:var(--bla);color:#EAF1F8;border-radius:22px;overflow:hidden;
+       display:grid;box-shadow:var(--skugga)}
+  @media(min-width:880px){ .rotband{grid-template-columns:1.1fr .9fr} }
+  .rotband .text{padding:clamp(1.8rem,4vw,3rem)}
+  .rotband h2{color:#fff}
+  .rotband p{color:#C3D3E2;max-width:50ch;margin-top:.7rem}
+  .rotband .knapp{margin-top:1.6rem;background:#fff;color:var(--bla);box-shadow:none}
+  .rotband img{width:100%;height:100%;object-fit:cover;min-height:260px}
+
+  /* kontakt */
+  .kontakt-grid{display:grid;gap:2rem}
+  @media(min-width:880px){ .kontakt-grid{grid-template-columns:1fr 1fr} }
+  .kontakt dl{display:grid;grid-template-columns:auto 1fr;gap:.5rem 1.2rem;font-size:1rem}
+  .kontakt dt{font-weight:700}
+  .kontakt dd{color:var(--dis)}
+  .kontakt .tider{background:var(--yta);border:1px solid var(--linje);border-radius:16px;padding:1.5rem}
+
+  footer.fot{border-top:1px solid var(--linje);padding:1.6rem 0 2.2rem;margin-top:2rem;
+       font-size:.86rem;color:var(--dis)}
+  footer.fot .wrap{display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-between}
+
+  @media (prefers-reduced-motion: no-preference){
+    .avsloja{opacity:0;translate:0 18px;transition:opacity .6s cubic-bezier(.22,.9,.32,1),translate .6s cubic-bezier(.22,.9,.32,1)}
+    .avsloja.syns{opacity:1;translate:0 0}
+  }
+</style>
+</head>
+<body>
+
+<div class="exempelband">Exempel byggt av <a href="https://www.signalbrief.se/foretag">Signal Brief</a>. Bergmans Måleri är ett fiktivt företag: så här kan er sida se ut.</div>
+
+<header class="topp">
+  <div class="wrap topp-rad">
+    <a class="marke" href="#">
+      <span class="ruta" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="3" y="4" width="18" height="9" rx="1.5" fill="#F4F7FA"/><path d="M12 13v3M12 16h0" stroke="#F4F7FA" stroke-width="3" stroke-linecap="round"/><rect x="10.5" y="15" width="3" height="6" rx="1" fill="#F4F7FA"/></svg></span>
+      <span><b>Bergmans Måleri</b><small>Täby · sedan 1994</small></span>
+    </a>
+    <nav class="huvud" aria-label="Huvudmeny">
+      <a href="#tjanster">Tjänster</a>
+      <a href="#sa-gar-det-till">Så går det till</a>
+      <a href="#kontakt">Kontakt</a>
+    </nav>
+    <a class="ring-cta" href="tel:0855012345">Ring 08-550 123 45</a>
+  </div>
+</header>
+
+<main>
+  <section class="hjalte">
+    <div class="wrap hjalte-grid">
+      <div>
+        <h1>Målat, klart och städat — <span class="mark">till fast pris</span></h1>
+        <p class="ingress">Bergmans Måleri har målat hem och trapphus i Täby med
+        omnejd i trettio år. Ni får en fast offert inom 48 timmar: inga
+        löpande timmar, inga överraskningar på fakturan.</p>
+        <div class="cta-rad">
+          <a class="knapp primar" href="#kontakt">Få fast offert inom 48 h</a>
+          <a class="knapp lugn" href="#tjanster">Se våra tjänster</a>
+        </div>
+        <p class="stjarnrad"><span class="s" aria-hidden="true">★★★★★</span> <span><b>4,8 av 5</b> på Google · 64 omdömen</span></p>
+        <div class="trustrad">
+          <span>ROT-avdrag direkt på fakturan</span>
+          <span>Ansvarsförsäkrade</span>
+          <span>Svar samma dag</span>
+        </div>
+      </div>
+      <div class="hjalte-bild">
+        <img src="https://images.pexels.com/photos/7218579/pexels-photo-7218579.jpeg?auto=compress&cs=tinysrgb&w=1200" width="800" height="1000"
+             alt="Målare från Bergmans Måleri rollar en innervägg vit, maskeringstejp längs taklisten (exempelbild)">
+        <div class="fargkarta" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sektion" id="tjanster">
+    <div class="wrap">
+      <h2>Tjänster med pris ni kan räkna på</h2>
+      <p class="under">Alla priser är efter ROT-avdrag och gäller normalstora rum
+      med normalt underarbete. Exakt pris får ni alltid i offerten, och den håller.</p>
+      <div class="tjanster">
+        <article class="tjanst avsloja">
+          <div class="prov" aria-hidden="true"></div>
+          <div class="inre">
+            <h3>Måleri invändigt</h3>
+            <p>Väggar, tak, snickerier och lister. Vi flyttar, täcker och städar,
+            så att ni kommer hem till ett färdigt rum.</p>
+            <p class="pris">fr. 4 900 kr <small>/ rum, efter ROT</small></p>
+          </div>
+        </article>
+        <article class="tjanst avsloja">
+          <div class="prov" aria-hidden="true"></div>
+          <div class="inre">
+            <h3>Tapetsering</h3>
+            <p>Från gammal juteväv till ny fondvägg. Vi hjälper er välja tapet
+            som håller i tio år, inte bara till nästa trend.</p>
+            <p class="pris">fr. 6 400 kr <small>/ rum, efter ROT</small></p>
+          </div>
+        </article>
+        <article class="tjanst avsloja">
+          <div class="prov" aria-hidden="true"></div>
+          <div class="inre">
+            <h3>Fasad &amp; utemåleri</h3>
+            <p>Trähus, staket och vindskivor. Rätt färgsystem för svenskt
+            klimat, målat på rätt årstid.</p>
+            <p class="pris">Offert efter besiktning <small>(alltid kostnadsfri)</small></p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="sektion" id="sa-gar-det-till" style="padding-top:0">
+    <div class="wrap">
+      <h2>Så går det till</h2>
+      <p class="under">Tre steg. Inga konstigheter.</p>
+      <ol class="steg">
+        <li class="avsloja"><b>Ni hör av er</b><p>Ring, mejla eller använd formuläret.
+        Vi bokar en tid som passar er, ofta samma vecka.</p></li>
+        <li class="avsloja"><b>Fast offert inom 48 h</b><p>Vi tittar på jobbet,
+        mäter och räknar. Offerten ni får är priset ni betalar.</p></li>
+        <li class="avsloja"><b>Vi målar, ni bor</b><p>Vi täcker, målar och städar
+        efter oss. ROT-avdraget drar vi direkt på fakturan.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="sektion" style="padding-top:0">
+    <div class="wrap">
+      <div class="rotband avsloja">
+        <div class="text">
+          <h2>30 år i Täby — och vi svarar fortfarande i telefon</h2>
+          <p>Bergmans Måleri startades 1994 av Lars Bergman. I dag är vi fyra
+          målare som gör jobbet ordentligt, håller tiden och lämnar rent
+          efter oss. Det är hela affärsidén.</p>
+          <a class="knapp" href="#kontakt">Boka kostnadsfri besiktning</a>
+        </div>
+        <img src="https://images.pexels.com/photos/5493653/pexels-photo-5493653.jpeg?auto=compress&cs=tinysrgb&w=1200" width="800" height="1000"
+             alt="Målare i vit arbetsklädsel rollar ett tak med förlängningsskaft (exempelbild)" loading="lazy">
+      </div>
+    </div>
+  </section>
+
+  <section class="sektion kontakt" id="kontakt" style="padding-top:0">
+    <div class="wrap">
+      <h2>Kontakta oss</h2>
+      <p class="under">Beskriv jobbet kort så återkommer vi samma dag med
+      förslag på besiktningstid.</p>
+      <div class="kontakt-grid">
+        <dl>
+          <dt>Telefon</dt><dd><a href="tel:0855012345">08-550 123 45</a></dd>
+          <dt>Mejl</dt><dd><a href="mailto:info@bergmansmaleri.se">info@bergmansmaleri.se</a></dd>
+          <dt>Område</dt><dd>Täby, Danderyd, Vallentuna med omnejd</dd>
+          <dt>Org.nr</dt><dd>556123-4567 (fiktivt)</dd>
+        </dl>
+        <div class="tider">
+          <b>Telefontider</b>
+          <dl style="margin-top:.6rem">
+            <dt>Mån–fre</dt><dd>07.00–17.00</dd>
+            <dt>Lör</dt><dd>09.00–13.00</dd>
+            <dt>Sön</dt><dd>Stängt</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="fot">
+  <div class="wrap">
+    <span>© 2026 Bergmans Måleri AB (fiktivt exempelföretag)</span>
+    <span>Exempelsajt byggd av <a href="https://www.signalbrief.se/foretag">Signal Brief</a> · foton: Pexels (exempelbilder)</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var io = new IntersectionObserver(function(poster){
+      poster.forEach(function(p){ if(p.isIntersecting){ p.target.classList.add('syns'); io.unobserve(p.target);} });
+    },{threshold:.15});
+    document.querySelectorAll('.avsloja').forEach(function(el){ io.observe(el); });
+  })();
+</script>
+</body>
+</html>

@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="sv">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="description" content="Exempelsajt byggd av Signal Brief: Salong Vildhavre — fiktiv frisörsalong i Sundbyberg. Klippning, färg och styling med onlinebokning.">
+<title>Salong Vildhavre — Frisör i Sundbyberg | Exempel av Signal Brief</title>
+<link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="16" fill="%23572A38"/><path d="M16 7c-2 4-6 5-6 11a6 6 0 0 0 12 0c0-6-4-7-6-11z" fill="%23F3E7DC"/></svg>'>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Marcellus&family=Albert+Sans:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  /* Salong Vildhavre — DEMO byggd av Signal Brief (fiktivt företag).
+     Egen designvärld: varm plommon + ljus stenyta (tintad mot plommon,
+     inte cream), Marcellus display + Albert Sans brödtext. Fotoledd. */
+  :root{
+    --bg:#FAF7F6;           /* ljus sten, chroma mot plommon */
+    --yta:#FFFFFF;
+    --ink:#241318;
+    --dis:#63494F;          /* mörk nog för 4.5:1 på --bg */
+    --plommon:#572A38;      /* bär identiteten */
+    --plommon-djup:#3F1D28;
+    --rosa:#E9D6D4;         /* svag tonplatta */
+    --linje:#E6D9D6;
+    --skugga:0 1px 2px rgba(36,19,24,.05),0 16px 38px -20px rgba(36,19,24,.25);
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-padding-top:76px}
+  body{font-family:"Albert Sans",system-ui,sans-serif;background:var(--bg);color:var(--ink);
+       font-size:1.04rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{font-family:"Marcellus",Georgia,serif;font-weight:400;line-height:1.08;
+       letter-spacing:.005em;text-wrap:balance}
+  img{max-width:100%;height:auto;display:block}
+  a{color:var(--plommon)}
+  :focus-visible{outline:3px solid var(--plommon);outline-offset:3px;border-radius:3px}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 clamp(1.1rem,4vw,1.6rem)}
+
+  .exempelband{background:#0E1B12;color:#CFE7D8;font-size:.82rem;padding:.55rem 1rem;
+       text-align:center;letter-spacing:.01em}
+  .exempelband a{color:#7FE0B4;font-weight:700;text-decoration:underline;text-underline-offset:2px}
+
+  header.topp{position:sticky;top:0;z-index:50;background:rgba(250,247,246,.94);
+       border-bottom:1px solid var(--linje)}
+  .topp-rad{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 0}
+  .marke{text-decoration:none;color:var(--ink);display:flex;align-items:baseline;gap:.55rem}
+  .marke b{font-family:"Marcellus",Georgia,serif;font-weight:400;font-size:1.3rem;letter-spacing:.02em}
+  .marke small{font-size:.74rem;color:var(--dis);letter-spacing:.14em;text-transform:uppercase}
+  nav.huvud{display:none;gap:1.6rem;font-weight:500;font-size:.95rem}
+  nav.huvud a{text-decoration:none;color:var(--dis)}
+  nav.huvud a:hover{color:var(--ink)}
+  .boka-cta{background:var(--plommon);color:#fff;text-decoration:none;font-weight:700;font-size:.93rem;
+       padding:.62rem 1.15rem;border-radius:99px;white-space:nowrap}
+  .boka-cta:hover{background:var(--plommon-djup)}
+  @media(min-width:860px){ nav.huvud{display:flex} }
+
+  /* fotoledd hjälte */
+  .hjalte{position:relative;min-height:min(78vh,640px);display:grid;align-items:end;overflow:hidden}
+  .hjalte img.fond{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+  .hjalte::after{content:"";position:absolute;inset:0;
+       background:linear-gradient(180deg,rgba(36,19,24,.10) 0%,rgba(36,19,24,.62) 78%,rgba(36,19,24,.78) 100%)}
+  .hjalte .inre{position:relative;z-index:1;color:#fff;padding:clamp(2.4rem,6vw,4rem) 0;width:100%}
+  .hjalte h1{font-size:clamp(2.5rem,6.5vw,4.2rem);max-width:16ch;color:#fff}
+  .hjalte p{margin-top:.9rem;max-width:46ch;font-size:1.1rem;color:#F2E8E6;line-height:1.7}
+  .hjalte .cta-rad{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:1.6rem;align-items:center}
+  .knapp{display:inline-block;text-decoration:none;font-weight:700;border-radius:99px;
+       padding:.9rem 1.6rem;font-size:1rem}
+  .knapp.ljus{background:#fff;color:var(--plommon-djup)}
+  .knapp.ljus:hover{background:var(--rosa)}
+  .knapp.kant{border:1.5px solid rgba(255,255,255,.75);color:#fff}
+  .knapp.kant:hover{background:rgba(255,255,255,.12)}
+  .hjalte .tider-not{font-size:.9rem;color:#E8D9D6;margin-top:1.4rem}
+
+  .sektion{padding:clamp(3.2rem,7vw,5.6rem) 0}
+  .sektion h2{font-size:clamp(1.9rem,3.8vw,2.6rem);margin-bottom:.6rem}
+  .sektion .under{color:var(--dis);max-width:56ch;margin-bottom:2.4rem}
+
+  /* prislista — riktig salongsanatomi */
+  .prisgrupp{display:grid;gap:0 4rem}
+  @media(min-width:880px){ .prisgrupp{grid-template-columns:1fr 1fr} }
+  .prisgrupp h3{font-size:1.25rem;margin:2rem 0 .8rem;color:var(--plommon)}
+  .prisgrupp .grupp:first-child h3{margin-top:0}
+  @media(min-width:880px){ .prisgrupp .grupp h3:first-child{margin-top:0} }
+  .prisrad{display:flex;align-items:baseline;gap:.8rem;padding:.72rem 0;border-bottom:1px solid var(--linje)}
+  .prisrad .vad{font-weight:500}
+  .prisrad .vad small{display:block;font-weight:400;color:var(--dis);font-size:.88rem}
+  .prisrad .prick{flex:1;border-bottom:2px dotted var(--linje);transform:translateY(-4px)}
+  .prisrad .kr{font-variant-numeric:tabular-nums;font-weight:700;white-space:nowrap}
+
+  /* om oss */
+  .om-grid{display:grid;gap:2.2rem;align-items:center}
+  @media(min-width:880px){ .om-grid{grid-template-columns:.9fr 1.1fr;gap:3.4rem} }
+  .om-grid img{border-radius:18px;box-shadow:var(--skugga);aspect-ratio:3/4;object-fit:cover;width:100%}
+  .om-grid .tonplatta{background:var(--rosa);border-radius:18px;padding:clamp(1.6rem,4vw,2.6rem)}
+  .om-grid .tonplatta p{margin-top:.8rem;color:#4A3038}
+  .om-grid .tonplatta p:first-of-type{margin-top:1rem}
+  .signatur{font-family:"Marcellus",Georgia,serif;font-size:1.15rem;margin-top:1.4rem;color:var(--plommon-djup)}
+
+  /* kontakt */
+  .kontakt-grid{display:grid;gap:2rem}
+  @media(min-width:880px){ .kontakt-grid{grid-template-columns:1fr 1fr} }
+  .kontakt dl{display:grid;grid-template-columns:auto 1fr;gap:.55rem 1.2rem}
+  .kontakt dt{font-weight:700}
+  .kontakt dd{color:var(--dis)}
+  .kort{background:var(--yta);border:1px solid var(--linje);border-radius:16px;padding:1.6rem}
+
+  footer.fot{border-top:1px solid var(--linje);padding:1.6rem 0 2.2rem;margin-top:1.6rem;
+       font-size:.86rem;color:var(--dis)}
+  footer.fot .wrap{display:flex;flex-wrap:wrap;gap:.6rem 2rem;justify-content:space-between}
+
+  @media (prefers-reduced-motion: no-preference){
+    .avsloja{opacity:0;translate:0 18px;transition:opacity .6s cubic-bezier(.22,.9,.32,1),translate .6s cubic-bezier(.22,.9,.32,1)}
+    .avsloja.syns{opacity:1;translate:0 0}
+    .hjalte img.fond{scale:1.06;transition:scale 1.6s cubic-bezier(.22,.9,.32,1)}
+    body.laddad .hjalte img.fond{scale:1}
+  }
+</style>
+</head>
+<body>
+
+<div class="exempelband">Exempel byggt av <a href="https://www.signalbrief.se/foretag">Signal Brief</a>. Salong Vildhavre är ett fiktivt företag: så här kan er sida se ut.</div>
+
+<header class="topp">
+  <div class="wrap topp-rad">
+    <a class="marke" href="#"><b>Vildhavre</b><small>Salong</small></a>
+    <nav class="huvud" aria-label="Huvudmeny">
+      <a href="#priser">Behandlingar</a>
+      <a href="#om">Om salongen</a>
+      <a href="#kontakt">Hitta hit</a>
+    </nav>
+    <a class="boka-cta" href="#kontakt">Boka tid</a>
+  </div>
+</header>
+
+<main>
+  <section class="hjalte">
+    <img class="fond" src="https://images.pexels.com/photos/17784004/pexels-photo-17784004.jpeg?auto=compress&cs=tinysrgb&w=1600" width="1600" height="2400"
+         alt="Frisör klipper en kunds hår med sax och kam i varmt träklätt salongsrum (exempelbild)">
+    <div class="wrap inre">
+      <h1>Bra hår börjar med någon som lyssnar</h1>
+      <p>Salong Vildhavre är en liten frisörsalong vid Sundbybergs torg.
+      Vi tar oss tid med varje klippning, så att håret funkar i vardagen
+      och inte bara på vägen hem från salongen.</p>
+      <div class="cta-rad">
+        <a class="knapp ljus" href="#kontakt">Boka tid</a>
+        <a class="knapp kant" href="#priser">Se priser</a>
+      </div>
+      <p class="tider-not">Öppet tis–lör · Drop-in i mån av tid</p>
+    </div>
+  </section>
+
+  <section class="sektion" id="priser">
+    <div class="wrap">
+      <h2>Behandlingar &amp; priser</h2>
+      <p class="under">Priset vi säger är priset ni betalar. Behöver håret mer
+      tid säger vi det innan vi börjar, aldrig efteråt.</p>
+      <div class="prisgrupp">
+        <div class="grupp">
+          <h3>Klippning</h3>
+          <div class="prisrad avsloja"><span class="vad">Klippning, kort hår<small>ca 45 min, inkl. tvätt och fön</small></span><span class="prick" aria-hidden="true"></span><span class="kr">545 kr</span></div>
+          <div class="prisrad avsloja"><span class="vad">Klippning, långt hår<small>ca 60 min, inkl. tvätt och fön</small></span><span class="prick" aria-hidden="true"></span><span class="kr">695 kr</span></div>
+          <div class="prisrad avsloja"><span class="vad">Barnklippning, upp till 12 år<small>ca 30 min</small></span><span class="prick" aria-hidden="true"></span><span class="kr">395 kr</span></div>
+          <h3>Styling</h3>
+          <div class="prisrad avsloja"><span class="vad">Fön &amp; styling<small>ca 30 min</small></span><span class="prick" aria-hidden="true"></span><span class="kr">395 kr</span></div>
+          <div class="prisrad avsloja"><span class="vad">Uppsättning, fest &amp; bröllop<small>boka provtid i god tid</small></span><span class="prick" aria-hidden="true"></span><span class="kr">fr. 1 195 kr</span></div>
+        </div>
+        <div class="grupp">
+          <h3>Färg &amp; form</h3>
+          <div class="prisrad avsloja"><span class="vad">Färgning, utväxt<small>ca 90 min, inkl. klippning av toppar</small></span><span class="prick" aria-hidden="true"></span><span class="kr">fr. 1 495 kr</span></div>
+          <div class="prisrad avsloja"><span class="vad">Slingor, helt huvud<small>ca 2,5 h, inkl. toning</small></span><span class="prick" aria-hidden="true"></span><span class="kr">fr. 1 995 kr</span></div>
+          <div class="prisrad avsloja"><span class="vad">Balayage<small>ca 3 h, inkl. toning och styling</small></span><span class="prick" aria-hidden="true"></span><span class="kr">fr. 2 495 kr</span></div>
+          <div class="prisrad avsloja"><span class="vad">Konsultation inför större färgbyte<small>ca 15 min, avräknas vid bokning</small></span><span class="prick" aria-hidden="true"></span><span class="kr">0 kr</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sektion" id="om" style="padding-top:0">
+    <div class="wrap om-grid">
+      <img src="https://images.pexels.com/photos/7440133/pexels-photo-7440133.jpeg?auto=compress&cs=tinysrgb&w=1200" width="800" height="1200"
+           alt="Frisör fönar och borstar en kunds långa hår i ljus salongsmiljö (exempelbild)" loading="lazy">
+      <div class="tonplatta avsloja">
+        <h2>En salong, två frisörer, inga löpande band</h2>
+        <p>Vildhavre öppnade 2017 med en enkel idé: färre stolar och mer tid
+        per kund. Vi som klipper heter Moa och Elin, och en av oss följer
+        dig från konsultation till färdig styling.</p>
+        <p>Vi jobbar med produkter som är snälla mot både hår och hårbotten,
+        och säger ärligt vad ditt hår klarar innan vi färgar.</p>
+        <p class="signatur">Moa &amp; Elin, Salong Vildhavre</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sektion kontakt" id="kontakt" style="padding-top:0">
+    <div class="wrap">
+      <h2>Boka tid eller kom förbi</h2>
+      <p class="under">Ring, mejla eller titta in. Har vi en lucka tar vi
+      drop-in, annars hittar vi en tid som passar dig.</p>
+      <div class="kontakt-grid">
+        <dl>
+          <dt>Telefon</dt><dd><a href="tel:0812345678">08-123 456 78</a></dd>
+          <dt>Mejl</dt><dd><a href="mailto:hej@salongvildhavre.se">hej@salongvildhavre.se</a></dd>
+          <dt>Adress</dt><dd>Torggatan 4, Sundbyberg<br>(två minuter från tvärbanan)</dd>
+        </dl>
+        <div class="kort">
+          <b>Öppettider</b>
+          <dl style="margin-top:.6rem">
+            <dt>Tis–fre</dt><dd>09.30–18.00</dd>
+            <dt>Lör</dt><dd>09.00–14.00</dd>
+            <dt>Sön–mån</dt><dd>Stängt</dd>
+          </dl>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="fot">
+  <div class="wrap">
+    <span>© 2026 Salong Vildhavre (fiktivt exempelföretag)</span>
+    <span>Exempelsajt byggd av <a href="https://www.signalbrief.se/foretag">Signal Brief</a> · foton: Pexels (exempelbilder)</span>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    addEventListener('load',function(){ document.body.classList.add('laddad'); });
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    var io = new IntersectionObserver(function(poster){
+      poster.forEach(function(p){ if(p.isIntersecting){ p.target.classList.add('syns'); io.unobserve(p.target);} });
+    },{threshold:.15});
+    document.querySelectorAll('.avsloja').forEach(function(el){ io.observe(el); });
+  })();
+</script>
+</body>
+</html>

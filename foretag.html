@@ -132,42 +132,57 @@
   .fore .zoomnot{position:absolute;bottom:34px;left:0;right:0;text-align:center;font-size:.58rem;
        color:#888;font-family:Arial,sans-serif}
 
-  /* EFTER (UNDER, helt statisk — mobilsajt för exempelföretaget) */
+  /* EFTER (UNDER, helt statisk — miniatyr av Bergmans Måleri-exemplet
+     i /exempel: KUNDENS blå designvärld, inte Signal Brief-grönt.
+     Ren CSS, inga foton — frysbuggen gäller.) */
   .mock.efter{z-index:1}
-  .efter .inner{position:absolute;inset:0;background:#FBFCFA;color:#17201A;
+  .efter .inner{position:absolute;inset:0;background:#F7F9FB;color:#16222E;
        font-family:"Familjen Grotesk",system-ui,sans-serif;display:flex;flex-direction:column}
-  .efter .topp{background:#0F2A1C;color:#EDF3EE;display:flex;justify-content:space-between;
-       align-items:center;padding:38px 16px 12px;flex:none}
-  .efter .topp .namn{font-weight:700;font-size:.92rem;letter-spacing:-.01em}
-  .efter .topp .ring{background:#2FA878;color:#06140D;border-radius:7px;padding:6px 11px;
-       font-weight:700;font-size:.68rem;white-space:nowrap}
+  .efter .topp{background:#fff;border-bottom:1px solid #DCE4EB;display:flex;justify-content:space-between;
+       align-items:center;padding:36px 12px 9px;flex:none}
+  .efter .topp .namn{display:flex;align-items:center;gap:6px;font-weight:700;font-size:.76rem;
+       letter-spacing:-.01em;color:#16222E}
+  .efter .topp .namn i{width:14px;height:14px;border-radius:4px;background:#1E3F63}
+  .efter .topp .ring{background:#1E3F63;color:#fff;border-radius:7px;padding:5px 9px;
+       font-weight:700;font-size:.58rem;white-space:nowrap}
   .efter .ehero{position:relative;flex:1;min-height:0;overflow:hidden}
   /* högerankrat innehåll: höger halva är alltid en hel komposition,
      så inget klipps mitt i ord när reglaget vilar på 50 % (v3-lärdomen) */
-  .efter .sjok{position:absolute;top:12px;left:-10px;width:44%;height:40px;
-       background:#DCEBE2;transform:rotate(-2.2deg);border-radius:3px}
-  .efter .sjok::after{content:"";position:absolute;right:-6px;top:5px;bottom:5px;width:12px;
-       border-radius:3px;background:#CFE3D7}
-  /* CSS-"foton": målade provytor i vänsterhalvan (inga rasterbilder!) */
-  .efter .prov{position:absolute;left:10px;top:66px;width:40%;aspect-ratio:3/4;border-radius:10px;
-       background:linear-gradient(165deg,#DFEDE4 0%,#BBD9C8 70%,#A8CDBA 100%);
-       box-shadow:0 6px 16px rgba(15,42,28,.18);transform:rotate(-3deg)}
-  .efter .prov.tva{top:auto;bottom:12px;left:20px;width:34%;aspect-ratio:4/3;transform:rotate(2deg);
-       background:linear-gradient(200deg,#F1EDE3 0%,#E0D5C2 100%)}
-  .efter .etext{position:absolute;top:14px;right:12px;width:52%;
+  .efter .etext{position:absolute;top:12px;right:8px;width:47%;
        display:flex;flex-direction:column;align-items:flex-start}
-  .efter h4{font-size:.84rem;font-weight:700;letter-spacing:-.015em;
-       line-height:1.22;text-wrap:balance}
-  .efter .stjarnor{display:block;margin-top:.55rem;
-       font-size:.6rem;font-weight:700;color:#B8860B}
-  .efter .stjarnor span{color:#46554C;font-weight:500}
-  .efter .chips{display:flex;gap:4px;flex-wrap:wrap;margin-top:.6rem}
-  .efter .chips span{border:1px solid #D7E2DA;background:#fff;border-radius:99px;
-       padding:2px 8px;font-size:.56rem;font-weight:700;color:#22392D}
-  .efter .eknapp{display:inline-block;margin-top:.7rem;background:#136A48;color:#fff;
-       font-weight:700;font-size:.62rem;padding:7px 11px;border-radius:7px}
+  .efter h4{font-size:.73rem;font-weight:700;letter-spacing:-.015em;
+       line-height:1.2;text-wrap:balance;color:#16222E}
+  .efter .stjarnor{display:block;margin-top:.45rem;
+       font-size:.53rem;font-weight:700;color:#C99019}
+  .efter .stjarnor span{color:#4A5A68;font-weight:500}
+  .efter .eknapp{display:inline-block;margin-top:.55rem;background:#C14E24;color:#fff;
+       font-weight:700;font-size:.57rem;padding:6px 9px;border-radius:7px}
+  .efter .minipris{margin-top:.65rem;width:100%;display:flex;flex-direction:column;gap:4px}
+  .efter .minipris .prisrad{display:flex;align-items:center;gap:4px;background:#fff;
+       border:1px solid #DCE4EB;border-radius:8px;padding:4px 6px;
+       font-size:.5rem;font-weight:600;color:#16222E;white-space:nowrap}
+  .efter .minipris .prisrad i{width:9px;height:9px;border-radius:3px;flex:none}
+  .efter .minipris .prisrad b{margin-left:auto;font-weight:700;padding-left:6px}
+  /* vänster: vägg som målas (CSS) + firmans färgkarta — samma motiv
+     som fullständiga exemplet */
+  .efter .vagg{position:absolute;left:10px;top:12px;width:37%;bottom:52px;border-radius:12px;
+       overflow:hidden;box-shadow:0 6px 16px rgba(22,34,46,.16);
+       background:linear-gradient(180deg,#E9EDF2 0%,#E9EDF2 38%,#2C5B8A 38.5%,#2C5B8A 100%)}
+  .efter .vagg::before{content:"";position:absolute;left:20%;top:23%;width:34%;height:9px;
+       border-radius:99px;background:#fff;box-shadow:0 2px 5px rgba(22,34,46,.28)}
+  .efter .vagg::after{content:"";position:absolute;left:35%;top:27%;width:3px;height:20%;
+       background:#B8C4CE;border-radius:2px}
+  .efter .minikarta{position:absolute;left:17px;bottom:8px;background:#fff;border-radius:8px;
+       box-shadow:0 5px 14px rgba(22,34,46,.22);padding:5px 6px 4px;display:flex;gap:3px;
+       align-items:flex-end}
+  .efter .minikarta i{display:block;width:9px;border-radius:2px}
+  .efter .minikarta i:nth-child(1){background:#DFE7EE;height:12px}
+  .efter .minikarta i:nth-child(2){background:#9FB6C9;height:15px}
+  .efter .minikarta i:nth-child(3){background:#5F82A3;height:18px}
+  .efter .minikarta i:nth-child(4){background:#2C5B8A;height:21px}
+  .efter .minikarta i:nth-child(5){background:#1E3F63;height:24px}
   .efter .rand{flex:none;display:flex;gap:.9rem;justify-content:center;padding:8px 10px;
-       background:#EFF5F0;font-size:.62rem;font-weight:700;color:#2E5B43;white-space:nowrap;overflow:hidden}
+       background:#EAF0F5;font-size:.6rem;font-weight:700;color:#1E3F63;white-space:nowrap;overflow:hidden}
 
   /* handtag: egen ARIA-slider (ingen native range — frysbuggen) */
   .spar{position:absolute;inset:0;pointer-events:none;transform:translateX(var(--pos));z-index:3}
@@ -384,21 +399,24 @@
             <div class="mock efter" aria-hidden="true">
               <div class="inner">
                 <div class="topp">
-                  <span class="namn">Bergmans Måleri</span>
-                  <span class="ring">Ring 08-123 456 78</span>
+                  <span class="namn"><i aria-hidden="true"></i>Bergmans Måleri</span>
+                  <span class="ring">Ring 08-550 123 45</span>
                 </div>
                 <div class="ehero">
-                  <div class="sjok" aria-hidden="true"></div>
-                  <div class="prov" aria-hidden="true"></div>
-                  <div class="prov tva" aria-hidden="true"></div>
+                  <div class="vagg" aria-hidden="true"></div>
+                  <div class="minikarta" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
                   <div class="etext">
-                    <h4>Måleri i Täby med 30 års hantverk bakom penseln</h4>
-                    <span class="stjarnor">★★★★★ <span>4,8 på Google · 64 omdömen</span></span>
-                    <div class="chips"><span>Invändigt</span><span>Fasad</span><span>ROT-avdrag</span></div>
+                    <h4>Målat, klart och städat, till fast pris</h4>
+                    <span class="stjarnor">★★★★★ <span>4,8 · 64 omdömen</span></span>
                     <span class="eknapp">Få fast offert inom 48 h</span>
+                    <div class="minipris">
+                      <span class="prisrad"><i style="background:#5F82A3"></i>Måleri invändigt<b>fr. 4 900 kr</b></span>
+                      <span class="prisrad"><i style="background:#C9B896"></i>Tapetsering<b>fr. 6 400 kr</b></span>
+                      <span class="prisrad"><i style="background:#A7B8A0"></i>Fasad &amp; utemåleri<b>offert</b></span>
+                    </div>
                   </div>
                 </div>
-                <div class="rand"><span>✓ Fast offert 48 h</span><span>✓ ROT-avdrag</span><span>✓ Svar samma dag</span></div>
+                <div class="rand"><span>✓ ROT-avdrag</span><span>✓ Fast offert 48 h</span><span>✓ Försäkrade</span></div>
               </div>
             </div>
             <div class="etiketter" aria-hidden="true">
