@@ -44,7 +44,7 @@
   .exempelband a{color:#7FE0B4;font-weight:700;text-decoration:underline;text-underline-offset:2px}
 
   header.topp{position:sticky;top:0;z-index:50;background:var(--bla);border-bottom:1px solid var(--bla-djup)}
-  .topp-rad{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.75rem 0}
+  .topp-rad{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:.75rem}
   .marke{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:#fff}
   .marke .ruta{width:34px;height:34px;border-radius:8px;background:#fff;display:grid;place-items:center}
   .marke b{font-family:"Arvo",Georgia,serif;font-size:1.08rem;letter-spacing:0}
@@ -56,11 +56,22 @@
        padding:.6rem 1rem;border-radius:9px;white-space:nowrap}
   .ring-cta:hover{background:var(--tegel-djup)}
   @media(min-width:860px){ nav.huvud{display:flex} }
+  /* smala mobiler: krymp ring-CTA + märke så firmanamnet håller EN rad
+     (≥375px). Under det bryts hela CTA:n till egen rad — aldrig mitt i
+     firmanamnet. */
+  @media(max-width:480px){
+    .topp-rad{flex-wrap:wrap;row-gap:.4rem}
+    .marke{gap:.45rem}
+    .marke .ruta{width:28px;height:28px}
+    .marke b{font-size:.92rem;white-space:nowrap}
+    .marke small{font-size:.66rem}
+    .ring-cta{font-size:.82rem;padding:.5rem .6rem}
+  }
 
   /* fotoledd hjälte (desktop) / blå panel + foto under (mobil) */
   .hjalte{position:relative;background:var(--bla);color:#fff}
   .hjalte .fond{display:none}
-  .hjalte .inre{position:relative;z-index:1;padding:clamp(2.6rem,6vw,5rem) 0 clamp(2.4rem,5vw,4.4rem)}
+  .hjalte .inre{position:relative;z-index:1;padding-block:clamp(2.6rem,6vw,5rem) clamp(2.4rem,5vw,4.4rem)}
   .hjalte h1{font-size:clamp(2.1rem,5vw,3.5rem);max-width:17ch;color:#fff}
   .ingress{color:#D5E0EA;font-size:1.1rem;max-width:50ch;margin-top:1.1rem}
   .cta-rad{display:flex;gap:.8rem;flex-wrap:wrap;align-items:center;margin-top:1.6rem}
